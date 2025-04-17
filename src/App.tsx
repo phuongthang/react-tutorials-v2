@@ -2,6 +2,7 @@ import { Suspense, useLayoutEffect, useState } from "react";
 import { Router } from "react-router-dom";
 import { browserHistory } from "./browserHistory";
 import RouterApp from "./routers/router";
+import { ToastContainer } from "react-toastify";
 
 export interface BrowserRouterProps {
   basename?: string;
@@ -31,6 +32,7 @@ const App = () => {
   return (
     <BrowserRouter>
       <Suspense fallback={null}>
+        <ToastContainer/>
         <RouterApp />
       </Suspense>
     </BrowserRouter>

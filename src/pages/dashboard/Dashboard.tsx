@@ -1,19 +1,42 @@
-import { useNavigate } from "react-router-dom";
-import { PATH_URL } from "../../constants/pathUrl";
+import { useNavigate } from 'react-router-dom';
 
-const Dashboard = () => {
-  const navigate = useNavigate();
-  return (
-    <div className="text-center">
-      <div className="text-2xl text-center">Trang chủ</div>
-      <button
-        type="button"
-        onClick={() => navigate(PATH_URL.LOGIN_URL)}
-        className="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800"
-      >
-        Trở về login
-      </button>
-    </div>
-  );
+interface DashboardProps {
+    handleLogout: () => void;
+}
+
+const Dashboard: React.FC<DashboardProps> = ({ handleLogout }) => {
+    const navigate = useNavigate();
+
+    return (
+        <div>
+            <section className="text-center py-16 bg-blue-500 text-white">
+                <h2 className="text-4xl font-bold">Welcome to My Website</h2>
+                <p className="mt-4 text-lg">This is a simple homepage built with Tailwind CSS.</p>
+                <p className="mt-2 text-lg">Explore our features and discover what we have to offer.</p>
+            </section>
+            <div className="flex justify-between">
+                <button
+                    className=" py-3 w-full text-sm tracking-wider rounded-lg text-white bg-green-600 hover:bg-blue-700 focus:outline-none"
+                    onClick={() => navigate("user-list")}
+                >
+                    Danh sách user
+                </button>
+                <button
+                    className="py-3 w-full text-sm tracking-wider rounded-lg text-white bg-green-600 hover:bg-blue-700 focus:outline-none"
+                    onClick={handleLogout}
+                >
+                    Đăng xuất
+                </button>
+                <button className="py-3 w-full text-sm tracking-wider rounded-lg text-white bg-green-600 hover:bg-blue-700 focus:outline-none">
+                    Khác
+                </button>
+            </div>
+            <section className="container mx-auto p-8 text-center">
+                <h3 className="text-3xl font-semibold text-gray-800">About Us</h3>
+                <p className="mt-4 text-gray-600">We provide high-quality services to help your business grow.</p>
+                <p className="mt-2 text-gray-600">Our team is dedicated to delivering the best experience possible.</p>
+            </section>
+        </div>
+    );
 };
 export default Dashboard;

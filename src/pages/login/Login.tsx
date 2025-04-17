@@ -1,26 +1,35 @@
-import { useNavigate } from "react-router-dom";
-import { PATH_URL } from "../../constants/pathUrl";
+import { useFormContext } from 'react-hook-form';
+import InputField from '../../components/InputField';
+
 
 const Login = () => {
-  const navigate = useNavigate();
-  return (
-    <div className="text-center">
-      <div className="text-2xl text-center">Login Page</div>
-      <button
-        type="button"
-        onClick={() => navigate(PATH_URL.DASHBOARD_URL)}
-        className="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800"
-      >
-        Đi đến trang chủ
-      </button>
-      <button
-        type="button"
-        onClick={() => navigate(PATH_URL.USER_REGISTER_URL)}
-        className="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800"
-      >
-        Đăng kí tài khoản
-      </button>
-    </div>
-  );
+
+    const {
+        control,
+        formState: { errors },
+    } = useFormContext();
+
+    return (
+        <div className="grid sm:grid-cols-1 gap-6">
+            <InputField
+                label="Email"
+                type="text"
+                id="email"
+                name="email"
+                placeholder="user@example.com"
+                control={control}
+                errors={errors}
+            />
+            <InputField
+                label="Mật khẩu"
+                type="password"
+                id="password"
+                name="password"
+                placeholder="Nhập mật khẩu"
+                control={control}
+                errors={errors}
+            />
+        </div>
+    );
 };
 export default Login;
