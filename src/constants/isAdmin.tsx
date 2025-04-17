@@ -6,14 +6,14 @@ interface UserData {
     dob: string;
     email: string;
     fullName: string;
-    gender: string;
+    gender: number;
     isDelete: number;
     phoneNumber: string;
     role: number;
     updatedAt: string;
     userName: string;
     __v: number;
-    _id: string;
+    _id: number;
   }
   
   interface DecodedToken extends JwtPayload {

@@ -10,7 +10,7 @@ const LoginContainer = lazy(() => import('./../pages/login/LoginContainer'));
 
 const UserRegisterContainer = lazy(() => import('./../pages/user-register/UserRegisterContainer'));
 const UserForgotPasswordContainer = lazy(() => import('./../pages/user-forgot-password/UserForgotPasswordContainer'));
-const UserComfirmPasswordCodeContainer = lazy(() => import('./../pages/user-comfirm-code/UserComfirmPasswordCodeContainer'));
+const UserComfirmPasswordCodeContainer = lazy(() => import('../pages/user-comfirm-password-code/UserComfirmPasswordCodeContainer'));
 
 
 

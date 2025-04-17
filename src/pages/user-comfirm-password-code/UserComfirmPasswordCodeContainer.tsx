@@ -56,7 +56,7 @@ const UserComFirmPasswordCodeContainer = () => {
             setLoading(false);
         }
     };
-
+    
     return (
         <UserComfirmPasswordCode
             register={register}
@@ -66,5 +66,4 @@ const UserComFirmPasswordCodeContainer = () => {
         />
     );
 };
-
 export default UserComFirmPasswordCodeContainer;
