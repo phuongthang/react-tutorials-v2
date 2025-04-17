@@ -3,7 +3,7 @@ import { confirmAlert } from 'react-confirm-alert';
 import 'react-confirm-alert/src/react-confirm-alert.css';
 import * as request from '../../api/axiosClient';
 import UserTable from '../../components/UserTable';
-import SearchInput from './SearchInput';
+import UserList from './UserList';
 import { toast } from 'react-toastify';
 import { useNavigate } from 'react-router-dom';
 
@@ -54,6 +54,7 @@ const UserListContainer = () => {
                   direction: 'ASC',
               };
     });
+    
     const [listUsers, setListUsers] = useState<listUsers[]>([]);
     const [rowsPerPage, setRowsPerPage] = useState<number>(20);
     const [totalUser, setTotalUser] = useState<number>(0);
@@ -173,7 +174,7 @@ const UserListContainer = () => {
 
     return (
         <div>
-            <SearchInput formInputs={formInputs} handleChangeInputs={handleChangeInputs} />
+            <UserList formInputs={formInputs} handleChangeInputs={handleChangeInputs} />
             <div className="shadow rounded-lg overflow-hidden">
                 <UserTable
                     header={tableHead}

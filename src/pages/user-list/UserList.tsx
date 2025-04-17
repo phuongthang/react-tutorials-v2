@@ -8,12 +8,12 @@ interface FormInputs {
     role: string;
 }
 
-interface SearchInputProps {
+interface UserlistProps {
     formInputs: FormInputs;
     handleChangeInputs: (name: keyof FormInputs, value: string) => void;
 }
 
-const SearchInput: React.FC<SearchInputProps> = ({ formInputs, handleChangeInputs }) => {
+const UserList: React.FC<UserlistProps> = ({ formInputs, handleChangeInputs }) => {
     return (
         <div className="bg-white shadow-lg rounded-xl p-6 w-full">
             <h2 className="text-xl font-bold text-gray-800 mb-5 text-center">Tìm kiếm người dùng</h2>
@@ -75,4 +75,4 @@ const SearchInput: React.FC<SearchInputProps> = ({ formInputs, handleChangeInput
     );
 };
 
-export default SearchInput;
+export default UserList;
