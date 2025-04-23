@@ -18,8 +18,8 @@ import FOOTER_vi from '../locales/vi/footer.json';
 import FOOTER_en from '../locales/en/footer.json';
 import YUPVALIDATE_vi from '../locales/vi/yupValidate.json';
 import YUPVALIDATE_en from '../locales/en/yupValidate.json';
-import SLIDEBAR_vi from '../locales/vi/slidebar.json';
-import SLIDEBAR_en from '../locales/en/slidebar.json';
+import SIDEBAR_vi from '../locales/vi/sidebar.json';
+import SIDEBAR_en from '../locales/en/sidebar.json';
 import DASHBOARD_vi from '../locales/vi/dashboard.json';
 import DASHBOARD_en from '../locales/en/dashboard.json';
 const resources = {
@@ -33,7 +33,7 @@ const resources = {
         header: HEADER_en,
         footer: FOOTER_en,
         yupValidate:YUPVALIDATE_en,
-        slidebar: SLIDEBAR_en,
+        sidebar: SIDEBAR_en,
         dashboard: DASHBOARD_en
     },
     vi: {
@@ -46,7 +46,7 @@ const resources = {
         header: HEADER_vi,
         footer: FOOTER_vi,
         yupValidate:YUPVALIDATE_vi,
-        slidebar: SLIDEBAR_vi,
+        sidebar: SIDEBAR_vi,
         dashboard: DASHBOARD_vi
     },
 };
@@ -55,7 +55,7 @@ const defaultNS = '';
 i18n.use(initReactI18next).init({
     resources,
     lng: 'en',
-    ns: ['register', 'login', 'userDetail', 'userList', 'forgotPassword', 'comfirmPasswordCode', 'header', 'footer', 'yupValidate', 'slidebar', 'dashboard'],
+    ns: ['register', 'login', 'userDetail', 'userList', 'forgotPassword', 'comfirmPasswordCode', 'header', 'footer', 'yupValidate', 'sidebar', 'dashboard'],
     fallbackLng: 'vi',
     defaultNS,
     interpolation: {

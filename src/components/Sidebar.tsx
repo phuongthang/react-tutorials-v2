@@ -8,21 +8,23 @@ interface MenuItem {
     icon: string;
     label: string;
 }
-
-const Sidebar = () => {
-  const { t, i18n } = useTranslation('slidebar');
-  const [language, setLanguage] = useState(i18n.language || 'vi');
+interface SlidebarProps{
+  toggleSidebar : () => void;
+  sidebarOpen: boolean;
+}
+const Sidebar: React.FC<SlidebarProps> = ({toggleSidebar, sidebarOpen}) => {
+    const { t, i18n } = useTranslation('sidebar');
+    const [language, setLanguage] = useState(i18n.language || 'vi');
     const menuItems: MenuItem[] = [
         { id: 'dashboard', icon: '📊', label: t('Menu.Dashboard') },
         { id: 'reports', icon: '📝', label: t('Menu.Reports') },
-        { id: 'users', icon: '👥', label: t('Menu.Users')},
+        { id: 'users', icon: '👥', label: t('Menu.Users') },
         { id: 'settings', icon: '⚙️', label: t('Menu.Settings') },
         { id: 'projects', icon: '📁', label: t('Menu.Projects') },
         { id: 'statistics', icon: '📈', label: t('Menu.Statistics') },
         { id: 'help', icon: '❓', label: t('Menu.Help') },
     ];
     const navigate = useNavigate();
-    const [sidebarOpen, setSidebarOpen] = useState(false);
 
     const [activeItem, setActiveItem] = useState('dashboard');
 
@@ -31,11 +33,15 @@ const Sidebar = () => {
         switch (id) {
             case 'dashboard':
                 navigate(PATH_URL.DASHBOARD_URL);
-                setSidebarOpen(false)
+                if(sidebarOpen){
+                  toggleSidebar();
+                }
                 break;
             case 'users':
                 navigate(PATH_URL.USER_LIST_URL);
-                setSidebarOpen(false)
+                if(sidebarOpen){
+                  toggleSidebar();
+                }
                 break;
         }
     };
@@ -44,15 +50,15 @@ const Sidebar = () => {
         localStorage.removeItem('accessToken');
         navigate(PATH_URL.LOGIN_URL);
     };
-    const toggleSidebar = () => {
-        setSidebarOpen(!sidebarOpen);
-    };
+   
     const handleChangeLanguage = () => {
-    const newLang = language === 'vi' ? 'en' : 'vi';
-    setLanguage(newLang);
-    i18n.changeLanguage(newLang);
-  };
-
+        const newLang = language === 'vi' ? 'en' : 'vi';
+        setLanguage(newLang);
+        i18n.changeLanguage(newLang);
+        if(sidebarOpen){
+            toggleSidebar();
+          }
+    };
 
     return (
         <div
@@ -64,7 +70,7 @@ const Sidebar = () => {
                 onClick={toggleSidebar}
                 className="w-16 h-16 bg-slate-700 flex items-center justify-center hover:bg-slate-600 transition-colors"
             >
-                <span className="text-2xl">{sidebarOpen ? "❌" : "☰"}</span>
+                <span className="text-2xl">{sidebarOpen ? '❌' : '☰'}</span>
             </button>
 
             <div className="mt-6 flex-grow">
@@ -101,16 +107,16 @@ const Sidebar = () => {
                 </span>
             </div>
             <div
-                className="px-4 py-4 bg-red-300 hover:bg-red-600 cursor-pointer transition-colors flex items-center mt-auto mb-4 mx-2 rounded"
+                className="px-4 py-4 bg-green-300 hover:bg-red-600 cursor-pointer transition-colors flex items-center mt-auto mb-4 mx-2 rounded"
                 onClick={handleLogout}
             >
-                <div className="w-8 text-center text-xl">📤gi</div>
+                <div className="w-8 text-center text-xl">🔓</div>
                 <span
                     className={`ml-4 whitespace-nowrap font-medium ${
                         sidebarOpen ? 'opacity-100' : 'opacity-0'
                     } transition-opacity duration-300`}
                 >
-                   {t('Menu.Log out') } 
+                    {t('Menu.Log out')}
                 </span>
             </div>
         </div>
