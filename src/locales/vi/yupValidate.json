@@ -1,0 +1,12 @@
+{
+    "Required" : "Đây là trường bắt buộc, vui lòng nhập.",
+    "Email": "E-mail không đúng định dạng.",
+    "Phone": "Số điện thoại không đúng định dạng.",
+    "Max":"Vui lòng nhập ít hơn {{max}} ký tự.",
+    "Min": "Vui lòng nhập nhiều hơn {{min}} ký tự.",
+    "Number": "Vui lòng nhập định dạng số.",
+    "Comfirm password": "Mật khẩu không khớp",
+    "Avatar": "Chỉ được phép chọn giá trị thuộc JPEG, PNG, JPG.",
+    "FileLarge": "File quá lớn. Tối đa 2MB"
+
+}

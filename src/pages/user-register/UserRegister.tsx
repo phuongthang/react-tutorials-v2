@@ -3,34 +3,36 @@ import { Controller } from 'react-hook-form';
 import InputField from '../../components/InputField';
 import { UserRegisterContext } from '../../contexts/UserRegisterContext';
 import { useContext } from 'react';
+import { useTranslation } from 'react-i18next';
 
 const UserRegister = () => {
+    const {t} = useTranslation("register");
     const { register, errors, control } = useContext(UserRegisterContext)!;
 
     return (
         <div className="grid grid-cols-1 gap-y-2 sm:grid-cols-2 sm:gap-5">
             <InputField
-                label="Họ và tên"
+                label={t('register forms.Full name')}
                 id="fname"
                 type="text"
                 name="fullName"
-                placeholder="Nhập tên đầy đủ"
+                placeholder={t('register forms.Full name placeholder')}
                 control={control}
                 errors={errors}
             />
             <InputField
-                label="Tên đăng nhập"
+                label={t('register forms.Username')}
                 type="text"
                 id="uname"
                 name="userName"
-                placeholder="Nhập tên đăng nhập"
+                placeholder={t('register forms.Username placeholder')}
                 control={control}
                 errors={errors}
             />
             <div className="flex ">
                 <div className="w-3/5 mr-2">
                     <label htmlFor="dob" className="text-gray-600 text-sm sm:mb-2 block">
-                        Ngày sinh
+                    {t('register forms.Day of birth')}
                     </label>
                     <Controller
                         name="dob"
@@ -46,9 +48,9 @@ const UserRegister = () => {
                     />
                     <p className="text-sm font-thin text-red-600">{errors.dob?.message}</p>
                 </div>
-                <div>
+                <div className='w-1/2'>
                     <label htmlFor="gender" className="text-gray-600 text-sm sm:mb-2 block ">
-                        Giới tính
+                    {t('register forms.Gender')}
                     </label>
                     <select
                         {...register('gender')}
@@ -58,64 +60,63 @@ const UserRegister = () => {
                             errors.gender ? 'border border-red-500' : ''
                         }`}
                     >
-                        <option value="" disabled></option>
-                        <option value="1">Male</option>
-                        <option value="2">Female</option>
+                        
+                        <option value="1">{t('register forms.Gender.Male')}</option>
+                        <option value="2">{t('register forms.Gender.Female')}</option>
                     </select>
                     <p className="text-sm font-thin text-red-600">{errors.gender?.message}</p>
                 </div>
             </div>
             <InputField
-                label="Email"
+                label={t('register forms.Email')}
                 type="text"
                 id="email"
                 name="email"
-                placeholder="user@example.com"
+                placeholder={t('register forms.Email placeholder')}
                 control={control}
                 errors={errors}
             />
             <InputField
-                label="Số điện thoại"
+                label={t('register forms.Phone number')}
                 type="text"
                 id="phoneNumber"
                 name="phoneNumber"
-                placeholder="0987654321"
+                placeholder={t('register forms.Phone number placeholder')}
                 control={control}
                 errors={errors}
             />
             <div>
-                <label htmlFor="arole" className="text-gray-600 text-sm sm:mb-2 block ">
-                    Loại tài khoản
+                <label htmlFor="role" className="text-gray-600 text-sm sm:mb-2 block ">
+                {t('register forms.Account role')}
                 </label>
                 <select
                     {...register('role')}
-                    id="arole"
+                    id="role"
                     defaultValue=""
                     className={`bg-gray-100 w-full text-gray-800 text-sm px-4 py-3 rounded focus:bg-transparent outline-blue-500 transition-all ${
                         errors.role ? 'border border-red-500' : ''
                     }`}
                 >
-                    <option value="" disabled></option>
-                    <option value="1">Quản trị viên</option>
-                    <option value="2">Nhân viên</option>
+                    <option value="1">{t('register forms.Account role.Admin')}</option>
+                    <option value="2">{t('register forms.Account role.User')}</option>
                 </select>
                 <p className="text-sm font-thin text-red-600">{errors.role?.message}</p>
             </div>
             <InputField
-                label="Mật khẩu"
+                label={t('register forms.Password')}
                 type="password"
                 id="password"
                 name="password"
-                placeholder="Nhập mật khẩu"
+                placeholder={t('register forms.Password placeholder')}
                 control={control}
                 errors={errors}
             />
             <InputField
-                label="Xác nhận mật khẩu"
+                label={t('register forms.Confirm password')}
                 type="password"
-                id="confirmPassword"
-                name="confirmPassword"
-                placeholder="Nhập lại mật khẩu"
+                id="comfirmPassword"
+                name="comfirmPassword"
+                placeholder={t('register forms.Confirm password placeholder')}
                 control={control}
                 errors={errors}
             />

@@ -1,42 +1,39 @@
-import { useNavigate } from 'react-router-dom';
+import { useTranslation } from "react-i18next";
+import { cardData } from "./DashboardContainer";
+
 
 interface DashboardProps {
-    handleLogout: () => void;
+    cards: cardData[];
 }
 
-const Dashboard: React.FC<DashboardProps> = ({ handleLogout }) => {
-    const navigate = useNavigate();
-
+const Dashboard: React.FC<DashboardProps> = ({ cards }) => {
+    const {t} = useTranslation('dashboard')
     return (
-        <div>
-            <section className="text-center py-16 bg-blue-500 text-white">
-                <h2 className="text-4xl font-bold">Welcome to My Website</h2>
-                <p className="mt-4 text-lg">This is a simple homepage built with Tailwind CSS.</p>
-                <p className="mt-2 text-lg">Explore our features and discover what we have to offer.</p>
-            </section>
-            <div className="flex justify-between">
-                <button
-                    className=" py-3 w-full text-sm tracking-wider rounded-lg text-white bg-green-600 hover:bg-blue-700 focus:outline-none"
-                    onClick={() => navigate("user-list")}
-                >
-                    Danh sách user
-                </button>
-                <button
-                    className="py-3 w-full text-sm tracking-wider rounded-lg text-white bg-green-600 hover:bg-blue-700 focus:outline-none"
-                    onClick={handleLogout}
-                >
-                    Đăng xuất
-                </button>
-                <button className="py-3 w-full text-sm tracking-wider rounded-lg text-white bg-green-600 hover:bg-blue-700 focus:outline-none">
-                    Khác
-                </button>
+        <div className="flex-1 overflow-auto">
+            <div className="p-6">
+                <div className="bg-white rounded-lg shadow p-6 mb-6">
+                    <h1 className="text-2xl font-bold text-gray-800">{t('Dashboard')}</h1>
+                    <p className="text-gray-600">{t('WelcomeBack')}</p>
+                </div>
+
+                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-6">
+                    {cards.map((card, index) => (
+                        <div key={index} className="bg-white rounded-lg shadow p-6">
+                            <h3 className="text-gray-700 font-medium mb-2">{card.title}</h3>
+                            <p className="text-2xl font-bold text-blue-600">{card.value}</p>
+                        </div>
+                    ))}
+                </div>
+
+                <div className="bg-white rounded-lg shadow p-6">
+                    <h2 className="text-xl font-semibold text-gray-800 mb-4">{t('ActivityChart')}</h2>
+                    <div className="h-64 flex items-center justify-center text-gray-500">
+                        qưeqweqweqweqwe
+                    </div>
+                </div>
             </div>
-            <section className="container mx-auto p-8 text-center">
-                <h3 className="text-3xl font-semibold text-gray-800">About Us</h3>
-                <p className="mt-4 text-gray-600">We provide high-quality services to help your business grow.</p>
-                <p className="mt-2 text-gray-600">Our team is dedicated to delivering the best experience possible.</p>
-            </section>
         </div>
     );
 };
+
 export default Dashboard;

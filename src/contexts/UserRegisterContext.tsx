@@ -1,7 +1,6 @@
-
+import {registerFormInputs} from '../pages/user-register/UserRegisterContainer'
 
 import { createContext } from 'react';
-
 
 import { Control, FieldErrors, UseFormHandleSubmit ,UseFormSetError,  UseFormRegister } from 'react-hook-form';
 
@@ -9,24 +8,12 @@ import { Control, FieldErrors, UseFormHandleSubmit ,UseFormSetError,  UseFormReg
 
 
 
-interface RegisterFormInputs {
-    userName: string;
-    email: string;
-    fullName: string;
-    phoneNumber: string;
-    password: string;
-    confirmPassword: string;
-    role: string;
-    gender: string;
-    dob: string;
-}
-
 interface UserRegisterContext {
-    register: UseFormRegister<RegisterFormInputs>;
-    errors: FieldErrors<RegisterFormInputs>;
-    control: Control<RegisterFormInputs>;
-    setError?: UseFormSetError<RegisterFormInputs>;
-    handleSubmit?:UseFormHandleSubmit<RegisterFormInputs>;
+    register: UseFormRegister<registerFormInputs>;
+    errors: FieldErrors<registerFormInputs>;
+    control: Control<registerFormInputs>;
+    setError?: UseFormSetError<registerFormInputs>;
+    handleSubmit?:UseFormHandleSubmit<registerFormInputs>;
 }
 
 export const UserRegisterContext = createContext<UserRegisterContext | undefined>(undefined);

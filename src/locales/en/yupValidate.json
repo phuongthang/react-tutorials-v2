@@ -1,0 +1,15 @@
+{
+    "Required" : "This field is required.",
+    "Email": "Invalid email format.",
+    "Phone": "Invalid phone number format.",
+    "Max":"Please enter less than {{max}} characters.",
+    "Min": "Please enter more than {{min}} characters.",
+    "Number":"Please enter a valid number.",
+    "Comfirm password": "Passwords do not match",
+    "Avatar": "Only JPEG, PNG, or JPG files are allowed.",
+    "FileLarge": "File too large. Maximum 2MB"
+
+    
+
+
+}

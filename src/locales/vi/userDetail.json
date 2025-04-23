@@ -1,0 +1,20 @@
+{   
+    "Heading": "Thông tin người dùng",
+    "user detail forms": {
+        "Full name": "Họ và tên",
+        "Username": "Tên đăng nhập",
+        "Day of birth": "Ngày sinh",
+        "Gender": "Giới tính",
+        "Gender.Male": "Nam",
+        "Gender.Female": "Nữ",
+        "Email": "Email",
+        "Phone number": "Số điện thoại",
+        "Account role": "Loại tài khoản",
+        "Account role.User": "Nhân viên",
+        "Account role.Admin": "Quản trị viên",
+        "Avatar": "Ảnh đại diện"
+    },
+    "Save info": "Lưu thông tin",
+    "Back": "Trở về",
+    "Select file": "Chọn tệp"
+}

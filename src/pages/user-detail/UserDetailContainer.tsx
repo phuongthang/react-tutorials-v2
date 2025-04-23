@@ -1,5 +1,5 @@
 import * as request from '../../api/axiosClient';
-import UserDetail, { UserDetailFormData } from './UserDetail';
+import UserDetail from './UserDetail';
 import { userDetailSchema } from './UserDetailSchema';
 
 import { yupResolver } from '@hookform/resolvers/yup';
@@ -10,9 +10,23 @@ import { toast } from 'react-toastify';
 import { useNavigate } from 'react-router-dom';
 import { PATH_URL } from '../../constants/pathUrl';
 import handleApiErrors from '../../utils/handleApiErrors';
+import { useTranslation } from 'react-i18next';
 
+export interface userDetailFormData {
+    fullName: string;
+    userName: string;
+    email: string;
+    dob: string;
+    gender: string;
+    phoneNumber: string;
+    role: string;
+    file?: File | null;
+    id?: string;
+}
 const UserDetailContainer = () => {
     const navigate = useNavigate();
+    const {t} = useTranslation('userDetail')
+    
     const { id } = useParams<{ id: string }>();
     const [loading, setLoading] = useState(false);
 
@@ -23,14 +37,14 @@ const UserDetailContainer = () => {
         control,
         setError,
         formState: { isDirty, errors },
-    } = useForm<UserDetailFormData>
+    } = useForm<userDetailFormData>
         ({
-        resolver: yupResolver(userDetailSchema) as Resolver<UserDetailFormData>,
+        resolver: yupResolver(userDetailSchema) as Resolver<userDetailFormData>,
         mode: 'all',
     });
 
 
-    const handleEditUser = async (data: UserDetailFormData) => {   
+    const handleEditUser = async (data: userDetailFormData) => {   
         data.id = id;
         try{        
             const response = await request.updateUser(data);
@@ -44,7 +58,7 @@ const UserDetailContainer = () => {
             console.log(error);
             if (error.response) {
                 if (error.response.data.details) {
-                    handleApiErrors<UserDetailFormData>(error.response.data.details, setError);
+                    handleApiErrors<userDetailFormData>(error.response.data.details, setError);
                 } else {
                     toast.error(error.response.data.message);
                 }

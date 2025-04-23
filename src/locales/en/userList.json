@@ -1,0 +1,39 @@
+{
+    "Heading": "Search for user",
+    "No data found": "No data found",
+    "Loading...":  "Loading...",
+    "user list forms": {
+        "Full name": "Full name",
+        "Username": "Username",
+        "Account role": "Account role",
+        "Account role.All": "All",
+        "Account role.User": "User",
+        "Account role.Admin": "Admin",
+        "Submit": "Search"
+    },
+    "table head": {
+        "Ordinal": "No.",
+        "Username": "Username",
+        "Full name": "Full name",
+        "Day of birth": "Day of birth",
+        "Account role": "Account role",
+        "Actions": "Actions"
+    },
+
+    "table pagination": {
+        "Rows per page": "Rows per page",
+        "Of": "Of",
+        "Next page": "Nex Page",
+        "Previos page": "Previos page"
+    },
+    "roles": {
+        "Admin": "Admin",
+        "User": "User"
+    },
+    "Alert":{
+        "Title": "Delete Confirmation",
+        "Delete message": "Are you sure you want to delete this user?",
+        "Comfirm": "Comfirm",
+        "Cancel": "Cancel"
+    }
+}

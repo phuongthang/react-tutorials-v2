@@ -1,0 +1,12 @@
+{
+    "Menu": {
+        "Dashboard": "Dashboard",
+        "Reports": "Reports",
+        "Users": "Users",
+        "Settings": "Settings",
+        "Projects": "Projects",
+        "Statistics": "Statistics",
+        "Help": "Help",
+        "Log out":"Logout"
+    }
+}

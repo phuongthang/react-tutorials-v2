@@ -1,9 +1,10 @@
 import { useFormContext } from 'react-hook-form';
 import InputField from '../../components/InputField';
+import { useTranslation } from 'react-i18next';
 
 
 const Login = () => {
-
+    const {t} = useTranslation('login')
     const {
         control,
         formState: { errors },
@@ -12,20 +13,20 @@ const Login = () => {
     return (
         <div className="grid sm:grid-cols-1 gap-6">
             <InputField
-                label="Email"
+                label={t('login forms.Email label')}
                 type="text"
                 id="email"
                 name="email"
-                placeholder="user@example.com"
+                placeholder=""
                 control={control}
                 errors={errors}
             />
             <InputField
-                label="Mật khẩu"
+                label={t('login forms.Password label')}
                 type="password"
                 id="password"
                 name="password"
-                placeholder="Nhập mật khẩu"
+                placeholder=""
                 control={control}
                 errors={errors}
             />

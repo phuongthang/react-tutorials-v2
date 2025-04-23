@@ -1,0 +1,16 @@
+{
+    "Heading": "Sign in to your account",
+    "Subheading": "Get started with our app, just sign in and enjoy.",
+
+    "login forms":{
+        "Email label": "Email",
+        "Password label": "Password",
+        "Submit": "Log in"
+    },
+    "Forgot password": "Forgotten password?",
+
+    "swith prompt":{
+        "No account" : "Don't have an account?",
+        "Sign up": "Sign up"
+    }
+}

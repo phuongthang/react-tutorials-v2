@@ -1,0 +1,33 @@
+{
+    "Heading": "Tạo tài khoản mới",
+    "register forms": {
+        "Full name": "Họ và tên",
+        "Full name placeholder": "Nguyễn Văn A",
+        "Username": "Tên đăng nhập",
+        "Username placeholder": "NgVanA122",
+        "Day of birth": "Ngày sinh",
+        "Gender": "Giới tính",
+        "Gender.Male": "Nam",
+        "Gender.Female": "Nữ",
+        "Email": "Email",
+        "Email placeholder": "anguyen@gmail.com",
+        "Phone number": "Số điện thoại",
+        "Phone number placeholder": "0987654321",
+        "Account role": "Loại tài khoản",
+        "Account role.User": "Người dùng",
+        "Account role.Admin": "Quản trị viên",
+        "Password": "Mật khẩu",
+        "Password placeholder": "Nhập mật khẩu",
+        "Confirm password": "Xác nhận mật khẩu",
+        "Confirm password placeholder": "Nhập lại mật khẩu",
+        "Submit": "Đăng ký"
+    },
+    
+    "swith prompt": {
+        "Already have account": "Đã có tài khoản?",
+        "Sign in": "Đăng nhập"
+    },
+    "Validate":{
+        
+    }
+}

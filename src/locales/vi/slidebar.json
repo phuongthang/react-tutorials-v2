@@ -1,0 +1,12 @@
+{
+    "Menu": {
+        "Dashboard": "Tổng quan",
+        "Reports": "Báo cáo",
+        "Users": "Người dùng",
+        "Settings": "Cài đặt",
+        "Projects": "Dự án",
+        "Statistics": "Thống kê",
+        "Help": "Trợ giúp",
+        "Log out": "Đăng xuất"
+    }
+}

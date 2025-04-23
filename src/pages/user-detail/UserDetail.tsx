@@ -3,40 +3,32 @@ import React from 'react';
 import { UseFormRegister, FieldErrors, Controller } from 'react-hook-form';
 import DatePickerForm from '../../utils/DatePickerForm';
 import { User, Mail, Calendar, Phone, Users, FileText, Image } from 'lucide-react';
-
-export interface UserDetailFormData {
-    fullName: string;
-    userName: string;
-    email: string;
-    dob: string;
-    gender: string;
-    phoneNumber: string;
-    role: string;
-    file?: File | null;
-    id?: string;
-}
+import { userDetailFormData } from './UserDetailContainer';
+import { useTranslation } from 'react-i18next';
+import ImageInput from '../../components/ImageInput';
 
 interface UserDetailProps {
-    register: UseFormRegister<UserDetailFormData>;
-    errors: FieldErrors<UserDetailFormData>;
+    register: UseFormRegister<userDetailFormData>;
+    errors: FieldErrors<userDetailFormData>;
     onSubmit: React.FormEventHandler<HTMLFormElement>;
     control: any;
-    onCancel?: () => void;
+    onCancel: () => void;
     isDirty: boolean;
 }
 
 const UserDetail: React.FC<UserDetailProps> = ({ register, errors, onSubmit, control, onCancel, isDirty }) => {
+    const { t } = useTranslation('userDetail');
     return (
         <div className="max-w-4xl mx-auto py-8 px-4">
             <div className="bg-gradient-to-r from-blue-50 to-indigo-50 p-8 rounded-3xl shadow-lg">
-                <h2 className="text-2xl font-bold text-gray-800 mb-6 text-center">Thông tin người dùng</h2>
+                <h2 className="text-2xl font-bold text-gray-800 mb-6 text-center">{t('Heading')}</h2>
 
                 <form onSubmit={onSubmit} className="space-y-6">
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                         <div className="space-y-2">
                             <label className="flex items-center text-sm font-medium text-gray-700">
                                 <User className="w-4 h-4 mr-2 text-blue-600" />
-                                Họ tên
+                                {t('user detail forms.Full name')}
                             </label>
                             <div className="relative">
                                 <input
@@ -53,7 +45,7 @@ const UserDetail: React.FC<UserDetailProps> = ({ register, errors, onSubmit, con
                         <div className="space-y-2">
                             <label className="flex items-center text-sm font-medium text-gray-700">
                                 <FileText className="w-4 h-4 mr-2 text-blue-600" />
-                                Tên tài khoản
+                                {t('user detail forms.Username')}
                             </label>
                             <div className="relative">
                                 <input
@@ -70,7 +62,7 @@ const UserDetail: React.FC<UserDetailProps> = ({ register, errors, onSubmit, con
                         <div className="space-y-2">
                             <label className="flex items-center text-sm font-medium text-gray-700">
                                 <Calendar className="w-4 h-4 mr-2 text-blue-600" />
-                                Ngày sinh
+                                {t('user detail forms.Day of birth')}
                             </label>
                             <Controller
                                 control={control}
@@ -90,14 +82,14 @@ const UserDetail: React.FC<UserDetailProps> = ({ register, errors, onSubmit, con
                         <div className="space-y-2">
                             <label className="flex items-center text-sm font-medium text-gray-700">
                                 <Users className="w-4 h-4 mr-2 text-blue-600" />
-                                Giới tính
+                                {t('user detail forms.Gender')}
                             </label>
                             <select
                                 {...register('gender')}
                                 className="w-full border border-gray-300 rounded-xl px-4 py-3 focus:ring-2 focus:ring-blue-500 focus:border-blue-500 focus:outline-none transition-all duration-200 bg-white"
                             >
-                                <option value="1">Nam</option>
-                                <option value="2">Nữ</option>
+                                <option value="1">{t('user detail forms.Gender.Male')}</option>
+                                <option value="2">{t('user detail forms.Gender.Female')}</option>
                             </select>
                             {errors.gender && (
                                 <p className="text-red-500 text-sm mt-1">{errors.gender.message as string}</p>
@@ -106,7 +98,7 @@ const UserDetail: React.FC<UserDetailProps> = ({ register, errors, onSubmit, con
                         <div className="space-y-2">
                             <label className="flex items-center text-sm font-medium text-gray-700">
                                 <Mail className="w-4 h-4 mr-2 text-blue-600" />
-                                Email
+                                {t('user detail forms.Email')}
                             </label>
                             <div className="relative">
                                 <input
@@ -121,7 +113,7 @@ const UserDetail: React.FC<UserDetailProps> = ({ register, errors, onSubmit, con
                         <div className="space-y-2">
                             <label className="flex items-center text-sm font-medium text-gray-700">
                                 <Phone className="w-4 h-4 mr-2 text-blue-600" />
-                                Số điện thoại
+                                {t('user detail forms.Phone number')}
                             </label>
                             <div className="relative">
                                 <input
@@ -138,14 +130,14 @@ const UserDetail: React.FC<UserDetailProps> = ({ register, errors, onSubmit, con
                         <div className="space-y-2">
                             <label className="flex items-center text-sm font-medium text-gray-700">
                                 <Users className="w-4 h-4 mr-2 text-blue-600" />
-                                Loại tài khoản
+                                {t('user detail forms.Account role')}
                             </label>
                             <select
                                 {...register('role')}
                                 className="w-full border border-gray-300 rounded-xl px-4 py-3 focus:ring-2 focus:ring-blue-500 focus:border-blue-500 focus:outline-none transition-all duration-200 bg-white"
                             >
-                                <option value="1">Quản trị viên</option>
-                                <option value="2">Nhân viên</option>
+                                <option value="1">{t('user detail forms.Account role.Admin')}</option>
+                                <option value="2">{t('user detail forms.Account role.User')}</option>
                             </select>
                             {errors.role && (
                                 <p className="text-red-500 text-sm mt-1">{errors.role.message as string}</p>
@@ -155,19 +147,21 @@ const UserDetail: React.FC<UserDetailProps> = ({ register, errors, onSubmit, con
                         <div className="space-y-2">
                             <label className="flex items-center text-sm font-medium text-gray-700">
                                 <Image className="w-4 h-4 mr-2 text-blue-600" />
-                                Ảnh đại diện
+                                {t('user detail forms.Avatar')}
                             </label>
-
-                            <input
-                                type="file"
-                                accept="image/*"
-                                {...register('file')}
-                                className="w-full h-[48px] border border-gray-300 rounded-xl px-4 py-[10px] file:mr-4 file:py-2 file:px-4 file:rounded-md file:border-0 file:text-sm file:bg-blue-50 file:text-blue-700 hover:file:bg-blue-100 transition-all duration-200"
+                            <Controller
+                                name="avatar"
+                                control={control}
+                                render={({ field: { onChange, onBlur, name }, fieldState: { error } }) => (
+                                    <ImageInput
+                                        onChange={onChange}
+                                        onBlur={onBlur}
+                                        name={name}
+                                        error={error?.message}
+                                    />
+                                )}
                             />
-
-                            {errors.file && (
-                                <p className="text-red-500 text-sm mt-1">{errors.file.message as string}</p>
-                            )}
+                            
                         </div>
                     </div>
 
@@ -177,7 +171,7 @@ const UserDetail: React.FC<UserDetailProps> = ({ register, errors, onSubmit, con
                             onClick={onCancel}
                             className="flex items-center px-6 py-3 bg-gray-200 text-gray-700 rounded-xl hover:bg-gray-300 transition-all duration-200 font-medium"
                         >
-                            Trở về
+                            {t('Back')}
                         </button>
                         <button
                             disabled={!isDirty}
@@ -188,7 +182,7 @@ const UserDetail: React.FC<UserDetailProps> = ({ register, errors, onSubmit, con
                                     : 'bg-gray-300 text-gray-500 opacity-50 cursor-not-allowed'
                             }`}
                         >
-                            Lưu thông tin
+                            {t('Save info')}
                         </button>
                     </div>
                 </form>

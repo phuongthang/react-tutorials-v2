@@ -1,4 +1,4 @@
-import UserComfirmPasswordCode, { PasswordCodeFormInputs } from './UserComfirmPasswordCode';
+import UserComfirmPasswordCode from './UserComfirmPasswordCode';
 import { useEffect, useState } from 'react';
 import { comfirmCodeSchema } from './comfirmCodeSchema';
 import isAuth from '../../constants/isAuth';
@@ -10,16 +10,20 @@ import * as request from '../../api/axiosClient';
 import { toast } from 'react-toastify';
 import handleApiErrors from '../../utils/handleApiErrors';
 
+export interface passwordCodeFormInputs {
+    email?: string;
+    passwordCode: string;
+}
 const UserComFirmPasswordCodeContainer = () => {
     const navigate = useNavigate();
     const [loading, setLoading] = useState(false);
 
     const {
-        register,
+        control,
         formState: { errors },
         handleSubmit,
         setError,
-    } = useForm<PasswordCodeFormInputs>({
+    } = useForm<passwordCodeFormInputs>({
         resolver: yupResolver(comfirmCodeSchema),
         mode: 'all',
     });
@@ -30,7 +34,8 @@ const UserComFirmPasswordCodeContainer = () => {
         }
     });
 
-    const onSubmit = async (data: PasswordCodeFormInputs) => {
+    const onSubmit = async (data: passwordCodeFormInputs) => {
+ 
         data.email = localStorage.getItem('emailForgotPassword') as string;
         setLoading(true);
         try {
@@ -45,7 +50,7 @@ const UserComFirmPasswordCodeContainer = () => {
             toast.dismiss();
             if (error.response) {
                 if (error.response.data.details) {
-                    handleApiErrors<PasswordCodeFormInputs>(error.response.data.details, setError);
+                    handleApiErrors<passwordCodeFormInputs>(error.response.data.details, setError);
                 } else {
                     toast.error(error.response.data.message);
                 }
@@ -59,7 +64,7 @@ const UserComFirmPasswordCodeContainer = () => {
     
     return (
         <UserComfirmPasswordCode
-            register={register}
+            control={control}
             errors={errors}
             onSubmit={handleSubmit(onSubmit)}
             loading={loading}

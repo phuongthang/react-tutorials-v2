@@ -1,0 +1,20 @@
+{   
+    "Heading": "User information",
+    "user detail forms": {
+        "Full name": "Full name",
+        "Username": "Username",
+        "Day of birth": "Day of birth",
+        "Gender": "Gender",
+        "Gender.Male": "Male",
+        "Gender.Female": "Female",
+        "Email": "Email",
+        "Phone number": "Phone number",
+        "Account role": "Account role",
+        "Account role.User": "User",
+        "Account role.Admin": "Admin",
+        "Avatar": "Avatar"
+    },
+    "Save info": "Save information",
+    "Back": "Back",
+    "Select file": "Select file"
+}

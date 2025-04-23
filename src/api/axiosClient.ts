@@ -1,5 +1,11 @@
 import axios, { AxiosRequestConfig } from 'axios';
 import { PATH_API } from '../constants/pathApi';
+import {registerFormInputs} from '../pages/user-register/UserRegisterContainer'
+import {loginFormInputs} from '../pages/login/LoginContainer'
+import { forgotPasswordFormInputs } from '../pages/user-forgot-password/UserForgotPasswordContainer';
+import { passwordCodeFormInputs } from '../pages/user-comfirm-password-code/UserComfirmPasswordCodeContainer';
+import { userListFormInputs } from '../pages/user-list/UserListContainer';
+import { userDetailFormData } from '../pages/user-detail/UserDetailContainer';
 
 const request = axios.create({
     baseURL: 'http://127.0.0.1:8080/api/v1/',
@@ -64,28 +70,28 @@ export const callAPI = async (
 const token = localStorage.getItem('accessToken');
 const headers: Record<string, string> = token ? { Authorization: `Bearer ${token}` } : {};
 
-export const signUp = (data: any) => callAPI('POST', PATH_API.USER_REGISTER_API, data);
+export const signUp = (data : registerFormInputs) => callAPI('POST', PATH_API.USER_REGISTER_API,  data);
 
-export const login = (data: any) => callAPI('POST', PATH_API.LOGIN_API, data);
+export const login = (data: loginFormInputs) => callAPI('POST', PATH_API.LOGIN_API, data);
 
-export const forgotPassword = (data: any) => callAPI('POST', PATH_API.FORGOT_PASSWORD_API, data);
+export const forgotPassword = (data: forgotPasswordFormInputs) => callAPI('POST', PATH_API.FORGOT_PASSWORD_API, data);
 
-export const comfirmPasswordCode = (data: any) => callAPI('POST', PATH_API.COMFIRM_PASSWORD_CODE_API, data);
+export const comfirmPasswordCode = (data: passwordCodeFormInputs) => callAPI('POST', PATH_API.COMFIRM_PASSWORD_CODE_API, data);
 
 
-export const userList = (data: any, params?: Record<string, any>) => {
+export const userList = (data: userListFormInputs, params: Record<string, any>) => {
     return callAPI('POST', PATH_API.USER_LIST_API, data, headers, params);
 };
 
-export const deleteUser = (data: any) => {
+export const deleteUser = (data: {}) => {
     return callAPI('POST', PATH_API.DELETE_USER_API, data, headers);
 };
 
-export const detailUser = (data: any) => {
+export const detailUser = (data: {}) => {
     return callAPI('POST', PATH_API.DETAIL_USER_API, data, headers);
 };
 
-export const updateUser = (data: any) => {
+export const updateUser = (data: userDetailFormData) => {
   return callAPI('POST', PATH_API.UPDATE_USER_API, data, headers);
 };
 

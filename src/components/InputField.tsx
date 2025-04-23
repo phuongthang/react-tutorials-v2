@@ -1,6 +1,7 @@
 import { Controller, Control, FieldErrors, FieldValues, Path } from 'react-hook-form';
 
 interface InputFieldProps<T extends FieldValues> {
+    className?: string;
     label: string;
     id: string;
     name: keyof T;
@@ -8,7 +9,7 @@ interface InputFieldProps<T extends FieldValues> {
     placeholder?: string;
     control: Control<T>;
     errors: FieldErrors<T>;
-    defaultValue?: string | number; // Thêm defaultValue cho an toàn
+    defaultValue?: string | number; 
 }
 
 const InputField = <T extends FieldValues>({
@@ -19,7 +20,8 @@ const InputField = <T extends FieldValues>({
     placeholder,
     control,
     errors,
-    defaultValue = '', // Thêm giá trị mặc định
+    defaultValue = '', 
+    className,
 }: InputFieldProps<T>) => {
     return (
         <div>
@@ -27,7 +29,9 @@ const InputField = <T extends FieldValues>({
                 {label}
             </label>
             <Controller
+            
                 name={name as Path<T>}
+                
                 control={control}
                 defaultValue={defaultValue as any} 
                 render={({ field }) => (
@@ -37,9 +41,10 @@ const InputField = <T extends FieldValues>({
                         type={type}
                         value={field.value ?? ''} 
                         placeholder={placeholder}
-                        className={`bg-gray-100 w-full text-gray-800 text-sm px-4 py-3 rounded focus:bg-transparent outline-blue-500 transition-all ${
+                        className= {className ? className : `bg-gray-100 w-full text-gray-800 text-sm px-4 py-3 rounded focus:bg-transparent outline-blue-500 transition-all ${
                             errors[name] ? 'border border-red-500' : ''
                         }`}
+                        
                     />
                 )}
             />

@@ -2,7 +2,7 @@ import React, { JSX, useState } from 'react';
 import { PersonOutline, AdminPanelSettings, Edit as EditIcon, Delete as DeleteIcon } from '@mui/icons-material';
 import { format, parseISO } from 'date-fns';
 import isAdmin from '../constants/isAdmin';
-
+import { useTranslation } from 'react-i18next';
 import {
     Table,
     TableBody,
@@ -21,7 +21,6 @@ import {
 
 interface UserTableProps {
     data: User[];
-    header: string[];
     rowsPerPage: number;
     currentPage: number;
     totalUser: number;
@@ -31,6 +30,7 @@ interface UserTableProps {
     onSortChange: (column: string, direction: 'asc' | 'desc') => void;
     onEditUser: (id: string) => void;
     onDeleteUser: (id: string, rowIndex: number) => void;
+    tableHeight?: string | number;
 }
 
 interface User {
@@ -43,11 +43,6 @@ interface User {
 
 type Order = 'asc' | 'desc';
 type SortableColumn = 'userName' | 'fullName';
-
-const roleMapping: Record<number, string> = {
-    1: 'Admin',
-    2: 'User',
-};
 
 const roleColors: Record<number, { bg: string; color: string; icon: JSX.Element }> = {
     1: { bg: '#fef0f0', color: '#d32f2f', icon: <AdminPanelSettings fontSize="small" /> },
@@ -74,7 +69,6 @@ const generateAvatarColor = (name: string): string => {
 
 const UserTable: React.FC<UserTableProps> = ({
     data,
-    header,
     rowsPerPage,
     currentPage,
     totalUser,
@@ -84,7 +78,9 @@ const UserTable: React.FC<UserTableProps> = ({
     onSortChange,
     onEditUser,
     onDeleteUser,
+    tableHeight = 'calc(100vh - 200px)',
 }) => {
+    const { t } = useTranslation('userList');
     const [orderBy, setOrderBy] = useState<SortableColumn>('userName');
     const [order, setOrder] = useState<Order>('asc');
     const handleRequestSort = (property: SortableColumn): void => {
@@ -94,6 +90,14 @@ const UserTable: React.FC<UserTableProps> = ({
         setOrderBy(property);
         onSortChange(property, newOrder);
     };
+    const getRoleLabel = (roleId: number): string => {
+        const roleKeys: Record<number, string> = {
+            1: 'roles.Admin',
+            2: 'roles.User',
+        };
+
+        return t(roleKeys[roleId]);
+    };
 
     return (
         <Paper
@@ -101,14 +105,24 @@ const UserTable: React.FC<UserTableProps> = ({
                 borderRadius: 3,
                 boxShadow: '0 4px 20px rgba(0,0,0,0.05)',
                 overflow: 'hidden',
+                display: 'flex',
+                flexDirection: 'column',
+                width: '100%',
+                height: '100%',
+                flex: 1,
             }}
             elevation={0}
         >
-            <TableContainer>
-                <Table>
+            <TableContainer
+                sx={{
+                    maxHeight: tableHeight,
+                    flex: 1,
+                }}
+            >
+                <Table stickyHeader sx={{ width: '100%' }}>
                     <TableHead>
                         <TableRow sx={{ backgroundColor: '#f9f9f9' }}>
-                            <TableCell sx={{ fontWeight: 'bold', width: '5%' }}>Stt</TableCell>
+                            <TableCell sx={{ fontWeight: 'bold', width: '5%' }}>{t('table head.Ordinal')}</TableCell>
                             <TableCell
                                 sortDirection={orderBy === 'userName' ? order : false}
                                 sx={{ fontWeight: 'bold', width: '20%' }}
@@ -118,7 +132,7 @@ const UserTable: React.FC<UserTableProps> = ({
                                     direction={orderBy === 'userName' ? order : 'asc'}
                                     onClick={() => handleRequestSort('userName')}
                                 >
-                                    {header[0]}
+                                    {t('table head.Username')}
                                 </TableSortLabel>
                             </TableCell>
 
@@ -131,13 +145,21 @@ const UserTable: React.FC<UserTableProps> = ({
                                     direction={orderBy === 'fullName' ? order : 'asc'}
                                     onClick={() => handleRequestSort('fullName')}
                                 >
-                                    {header[1]}
+                                    {t('table head.Full name')}
                                 </TableSortLabel>
                             </TableCell>
 
-                            <TableCell sx={{ fontWeight: 'bold', width: '15%' }}>{header[2]}</TableCell>
-                            <TableCell sx={{ fontWeight: 'bold', width: '15%' }}>{header[3]}</TableCell>
-                            {isAdmin() && <TableCell sx={{ fontWeight: 'bold', width: '15%' }}>{header[4]}</TableCell>}
+                            <TableCell sx={{ fontWeight: 'bold', width: '15%' }}>
+                                {t('table head.Day of birth')}
+                            </TableCell>
+                            <TableCell sx={{ fontWeight: 'bold', width: '15%' }}>
+                                {t('table head.Account role')}
+                            </TableCell>
+                            {isAdmin() && (
+                                <TableCell sx={{ fontWeight: 'bold', width: '15%' }}>
+                                    {t('table head.Actions')}
+                                </TableCell>
+                            )}
                         </TableRow>
                     </TableHead>
                     <TableBody>
@@ -145,7 +167,7 @@ const UserTable: React.FC<UserTableProps> = ({
                             <TableRow>
                                 <TableCell colSpan={6} align="center" sx={{ py: 3 }}>
                                     <Typography variant="body1" color="text.secondary">
-                                        Loading...
+                                        {t('Loading...')}
                                     </Typography>
                                 </TableCell>
                             </TableRow>
@@ -153,7 +175,7 @@ const UserTable: React.FC<UserTableProps> = ({
                             <TableRow>
                                 <TableCell colSpan={6} align="center" sx={{ py: 3 }}>
                                     <Typography variant="body1" color="text.secondary">
-                                        Không tìm thấy dữ liệu
+                                        {t('No data found')}
                                     </Typography>
                                 </TableCell>
                             </TableRow>
@@ -206,7 +228,7 @@ const UserTable: React.FC<UserTableProps> = ({
                                         <TableCell>
                                             <Chip
                                                 icon={roleInfo.icon}
-                                                label={roleMapping[row.role] || 'Unknown'}
+                                                label={getRoleLabel(row.role)}
                                                 size="small"
                                                 sx={{
                                                     backgroundColor: roleInfo.bg,
@@ -247,7 +269,11 @@ const UserTable: React.FC<UserTableProps> = ({
                 rowsPerPage={rowsPerPage}
                 rowsPerPageOptions={[20, 50, 100]}
                 onRowsPerPageChange={onRowsPerPageChange}
-                labelRowsPerPage="Số dòng:"
+                labelRowsPerPage={t('table pagination.Rows per page')}
+                sx={{
+                    borderTop: '1px solid rgba(224, 224, 224, 1)',
+                    overflow: 'hidden',
+                }}
             />
         </Paper>
     );

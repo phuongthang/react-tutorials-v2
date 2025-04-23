@@ -1,10 +1,16 @@
-import { Outlet } from "react-router-dom";
+import { Outlet } from 'react-router-dom';
+import Slidebar from '../../components/Slidebar';
 
-const AdminLayoutContainer = () => {
+export default function AdminLayoutContainer() {
   return (
-    <div>
-      <Outlet />
+    <div className="flex">
+
+      <div className="fixed top-0 left-0 h-full z-50">
+        <Slidebar />
+      </div>
+      <div className="ml-16 flex-1">
+        <Outlet />
+      </div>
     </div>
   );
-};
-export default AdminLayoutContainer;
+}

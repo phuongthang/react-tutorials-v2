@@ -6,6 +6,8 @@ import UserTable from '../../components/UserTable';
 import UserList from './UserList';
 import { toast } from 'react-toastify';
 import { useNavigate } from 'react-router-dom';
+import { useForm } from 'react-hook-form';
+import { useTranslation } from 'react-i18next';
 
 interface listUsers {
     userName: string;
@@ -14,9 +16,8 @@ interface listUsers {
     role: number;
     _id: string;
 }
-const tableHead = ['Tên đăng Nhập', 'Họ tên', ' Ngày sinh', 'Loại tài khoản', 'Actions'];
 
-interface formInputs {
+export interface userListFormInputs {
     userName: string;
     fullName: string;
     role: string;
@@ -31,6 +32,35 @@ interface params {
 
 const UserListContainer = () => {
     const navigate = useNavigate();
+    const { t } = useTranslation('userList');
+    const defaultKey = (): userListFormInputs => {
+        const stogareKey = localStorage.getItem('formInputs');
+        if (stogareKey) {
+            try {
+                return JSON.parse(stogareKey);
+            } catch {}
+        }
+        return {
+            userName: '',
+            fullName: '',
+            role: '',
+        };
+    };
+
+    const {
+        register,
+        handleSubmit,
+        formState: { errors },
+    } = useForm<userListFormInputs>({
+        defaultValues: defaultKey(),
+        mode: 'all',
+    });
+
+    const [listUsers, setListUsers] = useState<listUsers[]>([]);
+    const [rowsPerPage, setRowsPerPage] = useState<number>(20);
+    const [totalUser, setTotalUser] = useState<number>(0);
+    const [currentPage, setCurrentPage] = useState<number>(0);
+    const [loading, setLoading] = useState(false);
 
     const [formInputs, setFormInputs] = useState(() => {
         const saved = localStorage.getItem('formInputs');
@@ -42,7 +72,6 @@ const UserListContainer = () => {
                   role: '',
               };
     });
-
     const [params, setParams] = useState(() => {
         const saved = localStorage.getItem('params');
         return saved
@@ -54,48 +83,32 @@ const UserListContainer = () => {
                   direction: 'ASC',
               };
     });
-    
-    const [listUsers, setListUsers] = useState<listUsers[]>([]);
-    const [rowsPerPage, setRowsPerPage] = useState<number>(20);
-    const [totalUser, setTotalUser] = useState<number>(0);
-    const [currentPage, setCurrentPage] = useState<number>(0);
-    const [loading, setLoading] = useState(false);
-
-    const callApiUserList = async (data: formInputs, params: any) => {
-        if (data.userName !== '' || data.fullName !== '') {
-            setLoading(true);
-            try {
-                const response: any = await request.userList(data, params);
-                if (response.statusCode === 200 && response.data.data) {
-                    setListUsers(response.data.data.docs);
-                    setRowsPerPage(response.data.data.limit);
-                    setTotalUser(response.data.data.totalDocs);
-                    setCurrentPage(response.data.data.page);
-                }
-            } catch (error: any) {
-                toast.dismiss();
-                if (error.response) {
-                    if (error.response.data.message) {
-                        toast.error(error.response.data.message);
-                    }
-                } else {
-                    toast.error('Lỗi không xác định. thử lại sau!');
-                }
-            } finally {
-                setLoading(false);
+    const callApiUserList = async (data: userListFormInputs, params: params) => {
+        setLoading(true);
+        try {
+            const response: any = await request.userList(data, params);
+            if (response.statusCode === 200 && response.data.data) {
+                setListUsers(response.data.data.docs);
+                setRowsPerPage(response.data.data.limit);
+                setTotalUser(response.data.data.totalDocs);
+                setCurrentPage(response.data.data.page);
             }
+        } catch (error: any) {
+            console.log(error);
+            toast.dismiss();
+            if (error.response) {
+                if (error.response.data.message) {
+                    toast.error(error.response.data.message);
+                }
+            } else {
+                toast.error('Lỗi không xác định. thử lại sau!');
+            }
+        } finally {
+            setLoading(false);
         }
     };
-
-    const handleChangeInputs = (name: keyof formInputs, value: string) => {
-        setFormInputs((prev: formInputs) => ({
-            ...prev,
-            [name]: value,
-        }));
-    };
-
     const handleChangePage = (event: unknown, newPage: number) => {
-        setParams((prevParams : params) => ({
+        setParams((prevParams: params) => ({
             ...prevParams,
             page: newPage + 1,
         }));
@@ -118,7 +131,7 @@ const UserListContainer = () => {
     };
 
     const onEditUser = (id: string) => {
-        navigate(`/admin/dashboard/user-detail/${id}`);
+        navigate(`/admin/user-detail/${id}`);
     };
 
     const handleDeleteUser = async (idRemove: string, indexRemove: number) => {
@@ -149,17 +162,17 @@ const UserListContainer = () => {
         };
 
         confirmAlert({
-            title: 'Xác nhận xóa',
-            message: 'Bạn có chắc chắn muốn xóa người dùng này?',
+            title: t('Alert.Title'),
+            message: t('Alert.Delete message'),
             buttons: [
                 {
-                    label: 'Xác nhận',
+                    label: t('Alert.Comfirm'),
                     onClick: () => {
                         deleteUser();
                     },
                 },
                 {
-                    label: 'Hủy',
+                    label: t('Alert.Cancel'),
                     onClick: () => {},
                 },
             ],
@@ -172,12 +185,19 @@ const UserListContainer = () => {
         localStorage.setItem('params', JSON.stringify(params));
     }, [formInputs, params]);
 
+    const onSearch = (data: userListFormInputs) => {
+        setParams((prevParams: params) => ({
+            ...prevParams,
+            page: 1,
+        }));
+        setFormInputs(data);
+    };
+
     return (
         <div>
-            <UserList formInputs={formInputs} handleChangeInputs={handleChangeInputs} />
+            <UserList register={register} errors={errors} handleSubmit={handleSubmit} onSearch={onSearch} />
             <div className="shadow rounded-lg overflow-hidden">
                 <UserTable
-                    header={tableHead}
                     data={listUsers}
                     rowsPerPage={rowsPerPage}
                     currentPage={Math.max(currentPage - 1, 0)}

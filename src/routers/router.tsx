@@ -40,8 +40,8 @@ const RouterApp = () => {
             >
                 <Route index element={<Navigate to="dashboard" replace />} />
                 <Route path="/admin/dashboard" element={<DashboardContainer />} />
-                <Route path="/admin/dashboard/user-list" element={<UserListContainer />} />
-                <Route path="/admin/dashboard/user-detail/:id" element={<UserDetailContainer />} />
+                <Route path="/admin/user-list" element={<UserListContainer />} />
+                <Route path="/admin/user-detail/:id" element={<UserDetailContainer />} />
             </Route>
 
             {/*<Route path="/admin" element={<AdminLayoutContainer />}>

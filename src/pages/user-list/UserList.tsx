@@ -1,76 +1,104 @@
 import React from 'react';
 import PersonIcon from '@mui/icons-material/Person';
 import BadgeIcon from '@mui/icons-material/Badge';
+import SearchIcon from '@mui/icons-material/Search';
+import { FieldErrors, UseFormHandleSubmit, UseFormRegister } from 'react-hook-form';
+import { userListFormInputs } from './UserListContainer';
+import { useTranslation } from 'react-i18next';
 
-interface FormInputs {
-    userName: string;
-    fullName: string;
-    role: string;
-}
 
 interface UserlistProps {
-    formInputs: FormInputs;
-    handleChangeInputs: (name: keyof FormInputs, value: string) => void;
+    register: UseFormRegister<userListFormInputs>;
+    errors: FieldErrors<userListFormInputs>;
+    handleSubmit: UseFormHandleSubmit<userListFormInputs>;
+    onSearch: (data: userListFormInputs) => void;
 }
 
-const UserList: React.FC<UserlistProps> = ({ formInputs, handleChangeInputs }) => {
+const UserList: React.FC<UserlistProps> = ({ 
+    register,
+    errors,
+    handleSubmit,
+    onSearch
+}) => {
+    const {t} = useTranslation('userList')
+
     return (
         <div className="bg-white shadow-lg rounded-xl p-6 w-full">
-            <h2 className="text-xl font-bold text-gray-800 mb-5 text-center">Tìm kiếm người dùng</h2>
+            <h2 className="text-xl font-bold text-gray-800 mb-5 flex items-center justify-center">
+                <SearchIcon className="mr-2 text-blue-600" />
+                {t('Heading')}
+            </h2>
 
-            <div className="flex flex-col md:flex-row items-start md:items-end gap-4 w-full">
-                <div className="w-full md:w-1/3">
-                    <label className="block text-sm font-medium text-gray-700 mb-1">Tên đăng nhập</label>
-                    <div className="flex items-center border border-gray-300 rounded-lg overflow-hidden hover:border-blue-500 transition-colors">
-                        <div className="flex items-center justify-center bg-gray-50 p-2 border-r border-gray-300">
-                            <PersonIcon className="text-gray-500" fontSize="small" />
+            <form onSubmit={handleSubmit(onSearch)}>
+                <div className="flex flex-col md:flex-row md:justify-between items-start gap-4 w-full">
+                    <div className="flex flex-col md:flex-row gap-3 md:w-3/5">
+                        <div className="w-full md:w-1/3">
+                            <label className="block text-sm font-medium text-gray-700 mb-1">
+                                {t('user list forms.Username')}
+                            </label>
+                            <div className="flex items-center border border-gray-300 rounded-lg overflow-hidden hover:border-blue-500 transition-colors focus-within:ring-2 focus-within:ring-blue-500 focus-within:border-blue-500">
+                                <div className="flex items-center justify-center bg-gray-50 p-2 border-r border-gray-300">
+                                    <PersonIcon className="text-gray-500" fontSize="small" />
+                                </div>
+                                <input
+                                    {...register('userName')}
+                                    type="text"
+                                    className="w-full px-3 py-2 focus:outline-none text-gray-700"
+                                />
+                            </div>
+                            {errors.userName && <p className="text-red-600 text-xs mt-1">{errors.userName.message}</p>}
                         </div>
-                        <input
-                            name="userName"
-                            value={formInputs.userName}
-                            onChange={(e) =>
-                                handleChangeInputs(e.target.name as keyof FormInputs, e.target.value.trim())
-                            }
-                            type="text"
-                            placeholder="Nhập tên đăng nhập"
-                            className="w-full px-3 py-2 focus:outline-none text-gray-700"
-                        />
+
+                        <div className="w-full md:w-1/3">
+                            <label className="block text-sm font-medium text-gray-700 mb-1">
+                            {t('user list forms.Full name')}
+                            </label>
+                            <div className="flex items-center border border-gray-300 rounded-lg overflow-hidden hover:border-blue-500 transition-colors focus-within:ring-2 focus-within:ring-blue-500 focus-within:border-blue-500">
+                                <div className="flex items-center justify-center bg-gray-50 p-2 border-r border-gray-300">
+                                    <BadgeIcon className="text-gray-500" fontSize="small" />
+                                </div>
+                                <input
+                                    {...register('fullName')}
+                                    type="text"
+                                    className="w-full px-3 py-2 focus:outline-none text-gray-700"
+                                />
+                            </div>
+                            {errors.fullName && <p className="text-red-600 text-xs mt-1">{errors.fullName.message}</p>}
+                        </div>
+
+                        <div className="w-full md:w-1/3">
+                            <label className="block text-sm font-medium text-gray-700 mb-1">
+                            {t('user list forms.Account role')}
+                            </label>
+                            <select
+                                {...register('role')}
+                                className="w-full border border-gray-300 rounded-lg px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 bg-white"
+                            >
+                                <option value="">
+                                    {t('user list forms.Account role.All')}
+                                </option>
+                                <option value="1">
+                                {t('user list forms.Account role.Admin')}
+                                </option>
+                                <option value="2">
+                                {t('user list forms.Account role.User')}
+                                </option>
+                            </select>
+                            {errors.role && <p className="text-red-600 text-xs mt-1">{errors.role.message}</p>}
+                        </div>
+                    </div>
+
+                    <div className="self-end mt-4 md:mt-0">
+                        <button 
+                            type="submit"
+                            className="bg-blue-600 hover:bg-blue-700 text-white font-medium py-2 px-4 rounded-lg transition-colors flex items-center justify-center"
+                        >
+                            <SearchIcon className="mr-1" fontSize="small" />
+                            {t('user list forms.Submit')}
+                        </button>
                     </div>
                 </div>
-
-                <div className="w-full md:w-1/3">
-                    <label className="block text-sm font-medium text-gray-700 mb-1">Họ tên</label>
-                    <div className="flex items-center border border-gray-300 rounded-lg overflow-hidden hover:border-blue-500 transition-colors">
-                        <div className="flex items-center justify-center bg-gray-50 p-2 border-r border-gray-300">
-                            <BadgeIcon className="text-gray-500" fontSize="small" />
-                        </div>
-                        <input
-                            type="text"
-                            name="fullName"
-                            value={formInputs.fullName}
-                            onChange={(e) =>
-                                handleChangeInputs(e.target.name as keyof FormInputs, e.target.value.trim())
-                            }
-                            placeholder="Nhập họ tên"
-                            className="w-full px-3 py-2 focus:outline-none text-gray-700"
-                        />
-                    </div>
-                </div>
-
-                <div className="w-full md:w-1/3">
-                    <label className="block text-sm font-medium text-gray-700 mb-1">Loại tài khoản</label>
-                    <select
-                        name="role"
-                        value={formInputs.role}
-                        onChange={(e) => handleChangeInputs(e.target.name as keyof FormInputs, e.target.value)}
-                        className="w-full border border-gray-300 rounded-lg px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 bg-white"
-                    >
-                        <option value="">Tất cả</option>
-                        <option value="1">Quản trị viên</option>
-                        <option value="2">Nhân viên</option>
-                    </select>
-                </div>
-            </div>
+            </form>
         </div>
     );
 };
