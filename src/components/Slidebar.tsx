@@ -64,7 +64,7 @@ const Sidebar = () => {
                 onClick={toggleSidebar}
                 className="w-16 h-16 bg-slate-700 flex items-center justify-center hover:bg-slate-600 transition-colors"
             >
-                <span className="text-2xl">☰</span>
+                <span className="text-2xl">{sidebarOpen ? "❌" : "☰"}</span>
             </button>
 
             <div className="mt-6 flex-grow">
@@ -104,7 +104,7 @@ const Sidebar = () => {
                 className="px-4 py-4 bg-red-300 hover:bg-red-600 cursor-pointer transition-colors flex items-center mt-auto mb-4 mx-2 rounded"
                 onClick={handleLogout}
             >
-                <div className="w-8 text-center text-xl">🚪</div>
+                <div className="w-8 text-center text-xl">📤gi</div>
                 <span
                     className={`ml-4 whitespace-nowrap font-medium ${
                         sidebarOpen ? 'opacity-100' : 'opacity-0'
