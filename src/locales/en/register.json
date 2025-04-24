@@ -1,30 +1,32 @@
-
 {
-    "Heading": "Creat new account",
-    "register forms": {
-        "Full name": "Full name",
-        "Full name placeholder": "John Michael Smith",
-        "Username": "Username",
-        "Username placeholder": "JohnSmith122",
-        "Day of birth": "Day of birth",
-        "Gender": "Gender",
-        "Gender.Male": "Male",
-        "Gender.Female": "Female",
-        "Email": "Email",
-        "Email placeholder": "jmsmith@gmail.com",
-        "Phone number": "Phone number",
-        "Phone number placeholder": "0127654321",
-        "Account role": "Account role",
-        "Account role.User": "User",
-        "Account role.Admin": "Admin",
-        "Password": "Password",
-        "Password placeholder": "Enter your password",
-        "Confirm password": "Confirm password",
-        "Confirm password placeholder": "Re‑enter your password",
-        "Submit": "Create account"
+    "heading": "Creat new account",
+    "registerForms": {
+        "fullNameLabel": "Full name",
+        "fullNamePlaceholder": "John Michael Smith",
+        "usernameLabel": "Username",
+        "usernamePlaceholder": "JohnSmith122",
+        "dayOfBirthLabel": "Day of birth",
+        "genderLabel": "Gender",
+        "gender": {
+            "male": "Male",
+            "female": "Female"
+        },
+        "emailLabel": "Email",
+        "emailPlaceholder": "jmsmith@gmail.com",
+        "phoneNumberLabel": "Phone number",
+        "phoneNumberPlaceholder": "0127654321",
+        "accountRoleLabel": "Loại tài khoản",
+        "accountRole": {
+            "user": "User",
+            "admin": "Admin"
+        },
+        "passwordLabel": "Password",
+        "passwordPlaceholder": "Enter your password",
+        "confirmPasswordLabel": "Confirm password",
+        "confirmPasswordPlaceholder": "Re‑enter your password",
+        "submit": "Create account"
     },
-    "Submit": "Create account",
-    "swith prompt": {
+    "swithPrompt": {
         "Already have account": "Already have an account?",
         "Sign in": "Sign in"
     }

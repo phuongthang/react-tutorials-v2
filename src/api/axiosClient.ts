@@ -67,8 +67,8 @@ export const callAPI = async (
         throw error;
     }
 };
-const token = localStorage.getItem('accessToken');
-const headers: Record<string, string> = token ? { Authorization: `Bearer ${token}` } : {};
+
+
 
 export const signUp = (data : registerFormInputs) => callAPI('POST', PATH_API.USER_REGISTER_API,  data);
 
@@ -79,19 +79,19 @@ export const forgotPassword = (data: forgotPasswordFormInputs) => callAPI('POST'
 export const comfirmPasswordCode = (data: passwordCodeFormInputs) => callAPI('POST', PATH_API.COMFIRM_PASSWORD_CODE_API, data);
 
 
-export const userList = (data: userListFormInputs, params: Record<string, any>) => {
+export const userList = (data: userListFormInputs, params: Record<string, string>, headers : Record<string, string> ) => {
     return callAPI('POST', PATH_API.USER_LIST_API, data, headers, params);
 };
 
-export const deleteUser = (data: {}) => {
+export const deleteUser = (data: {}, headers : Record<string, string>) => {
     return callAPI('POST', PATH_API.DELETE_USER_API, data, headers);
 };
 
-export const detailUser = (data: {}) => {
+export const detailUser = (data: {}, headers : Record<string, string>) => {
     return callAPI('POST', PATH_API.DETAIL_USER_API, data, headers);
 };
 
-export const updateUser = (data: userDetailFormData) => {
+export const updateUser = (data: userDetailFormData, headers : Record<string, string>) => {
   return callAPI('POST', PATH_API.UPDATE_USER_API, data, headers);
 };
 

@@ -32,16 +32,18 @@ const Sidebar: React.FC<SlidebarProps> = ({toggleSidebar, sidebarOpen}) => {
         setActiveItem(id);
         switch (id) {
             case 'dashboard':
-                navigate(PATH_URL.DASHBOARD_URL);
                 if(sidebarOpen){
                   toggleSidebar();
                 }
+                navigate(PATH_URL.DASHBOARD_URL);
+                
                 break;
             case 'users':
-                navigate(PATH_URL.USER_LIST_URL);
                 if(sidebarOpen){
-                  toggleSidebar();
-                }
+                    toggleSidebar();
+                  }
+                navigate(PATH_URL.USER_LIST_URL);
+                
                 break;
         }
     };

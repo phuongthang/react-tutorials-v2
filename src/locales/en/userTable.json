@@ -1,0 +1,25 @@
+{
+    "loading" : "Loading...",
+    "No data found": "No data found",
+    "userTable": {
+        "header": {
+            "ordinal": "No.",
+            "username": "Username",
+            "fullName": "Full name",
+            "dayOfBirth": "Day of birth",
+            "accountRole": "Account role",
+            "actions": "Actions"
+        },
+        "pagination": {
+            "rowsPerPage": "Rows per page",
+            "of": "Of",
+            "nextPage": "Next page",
+            "previosPage": "Previos page"
+        },
+        "roles": {
+            "admin": "Admin",
+            "user": "User"
+        }
+        
+    }
+}

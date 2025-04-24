@@ -1,16 +1,16 @@
 {
-    "Heading": "Sign in to your account",
-    "Subheading": "Get started with our app, just sign in and enjoy.",
+    "heading": "Sign in to your account",
+    "subHeading": "Get started with our app, just sign in and enjoy.",
 
-    "login forms":{
-        "Email label": "Email",
-        "Password label": "Password",
-        "Submit": "Log in"
+    "loginForms":{
+        "emailLabel": "Email",
+        "passwordLabel": "Password",
+        "submit": "Log in"
     },
-    "Forgot password": "Forgotten password?",
+    "forgotPassword": "Forgotten password?",
 
-    "swith prompt":{
-        "No account" : "Don't have an account?",
-        "Sign up": "Sign up"
+    "swithPrompt":{
+        "noAccount" : "Don't have an account?",
+        "signUp": "Sign up"
     }
 }

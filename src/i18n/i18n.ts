@@ -22,6 +22,10 @@ import SIDEBAR_vi from '../locales/vi/sidebar.json';
 import SIDEBAR_en from '../locales/en/sidebar.json';
 import DASHBOARD_vi from '../locales/vi/dashboard.json';
 import DASHBOARD_en from '../locales/en/dashboard.json';
+import TOASTMESSAGE_vi from '../locales/vi/toastMessage.json';
+import TOASTMESSAGE_en from '../locales/en/toastMessage.json';
+import USERTABLE_vi from '../locales/vi/userTable.json';
+import USERTABLE_en from '../locales/en/userTable.json';
 const resources = {
     en: {
         register: REGISTER_en,
@@ -32,9 +36,11 @@ const resources = {
         comfirmPasswordCode: COMFIRMPASSWORDCODE_en,
         header: HEADER_en,
         footer: FOOTER_en,
-        yupValidate:YUPVALIDATE_en,
+        yupValidate: YUPVALIDATE_en,
         sidebar: SIDEBAR_en,
-        dashboard: DASHBOARD_en
+        dashboard: DASHBOARD_en,
+        toastMessage: TOASTMESSAGE_en,
+        userTable: USERTABLE_en
     },
     vi: {
         register: REGISTER_vi,
@@ -45,9 +51,11 @@ const resources = {
         comfirmPasswordCode: COMFIRMPASSWORDCODE_vi,
         header: HEADER_vi,
         footer: FOOTER_vi,
-        yupValidate:YUPVALIDATE_vi,
+        yupValidate: YUPVALIDATE_vi,
         sidebar: SIDEBAR_vi,
-        dashboard: DASHBOARD_vi
+        dashboard: DASHBOARD_vi,
+        toastMessage: TOASTMESSAGE_vi,
+        userTable: USERTABLE_vi
     },
 };
 
@@ -55,7 +63,22 @@ const defaultNS = '';
 i18n.use(initReactI18next).init({
     resources,
     lng: 'en',
-    ns: ['register', 'login', 'userDetail', 'userList', 'forgotPassword', 'comfirmPasswordCode', 'header', 'footer', 'yupValidate', 'sidebar', 'dashboard'],
+    ns: [
+        'register',
+        'login',
+        'userDetail',
+        'userList',
+        'forgotPassword',
+        'comfirmPasswordCode',
+        'header',
+        'footer',
+        'yupValidate',
+        'sidebar',
+        'dashboard',
+        'toastMessage',
+        'userTable'
+    ],
+
     fallbackLng: 'vi',
     defaultNS,
     interpolation: {

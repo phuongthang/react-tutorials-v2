@@ -1,33 +1,33 @@
 {
-    "Heading": "Tạo tài khoản mới",
-    "register forms": {
-        "Full name": "Họ và tên",
-        "Full name placeholder": "Nguyễn Văn A",
-        "Username": "Tên đăng nhập",
-        "Username placeholder": "NgVanA122",
-        "Day of birth": "Ngày sinh",
-        "Gender": "Giới tính",
-        "Gender.Male": "Nam",
-        "Gender.Female": "Nữ",
-        "Email": "Email",
-        "Email placeholder": "anguyen@gmail.com",
-        "Phone number": "Số điện thoại",
-        "Phone number placeholder": "0987654321",
-        "Account role": "Loại tài khoản",
-        "Account role.User": "Người dùng",
-        "Account role.Admin": "Quản trị viên",
-        "Password": "Mật khẩu",
-        "Password placeholder": "Nhập mật khẩu",
-        "Confirm password": "Xác nhận mật khẩu",
-        "Confirm password placeholder": "Nhập lại mật khẩu",
-        "Submit": "Đăng ký"
+    "heading": "Tạo tài khoản mới",
+    "registerForms": {
+        "fullNameLabel": "Họ và tên",
+        "fullNamePlaceholder": "Nguyễn Văn A",
+        "usernameLabel": "Tên đăng nhập",
+        "usernamePlaceholder": "NgVanA122",
+        "dayOfBirthLabel": "Ngày sinh",
+        "genderLabel": "Giới tính",
+        "gender": {
+            "male": "Nam",
+            "female": "Nữ"
+        },
+        "emailLabel": "Email",
+        "emailPlaceholder": "anguyen@gmail.com",
+        "phoneNumberLabel": "Số điện thoại",
+        "phoneNumberPlaceholder": "0987654321",
+        "accountRoleLabel": "Loại tài khoản",
+        "accountRole": {
+            "user": "Nhân viên",
+            "admin": "Quản trị viên"
+        },
+        "passwordLabel": "Mật khẩu",
+        "passwordPlaceholder": "Nhập mật khẩu",
+        "confirmPasswordLabel": "Xác nhận mật khẩu",
+        "confirmPasswordPlaceholder": "Nhập lại mật khẩu",
+        "submit": "Đăng ký"
     },
-    
-    "swith prompt": {
+    "swithPrompt": {
         "Already have account": "Đã có tài khoản?",
         "Sign in": "Đăng nhập"
-    },
-    "Validate":{
-        
     }
 }

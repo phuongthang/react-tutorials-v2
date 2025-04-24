@@ -46,7 +46,7 @@ export default function ImageInput({ onChange, onBlur, name, error }: ImageInput
         onClick={handleClick}
         className="w-full border border-gray-300 rounded-xl px-4 py-3 text-left text-gray-600 focus:ring-2 focus:ring-blue-500 focus:border-blue-500 focus:outline-none transition-all duration-200 bg-white"
       >
-        {fileName || t('Select file')}
+        {fileName || t('selectFile')}
       </button>
       {error && <p className="mt-1 text-sm text-red-500">{error}</p>}
     </div>

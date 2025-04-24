@@ -26,7 +26,7 @@ const UserList: React.FC<UserlistProps> = ({
         <div className="bg-white shadow-lg rounded-xl p-6 w-full">
             <h2 className="text-xl font-bold text-gray-800 mb-5 flex items-center justify-center">
                 <SearchIcon className="mr-2 text-blue-600" />
-                {t('Heading')}
+                {t('heading')}
             </h2>
 
             <form onSubmit={handleSubmit(onSearch)}>
@@ -34,7 +34,7 @@ const UserList: React.FC<UserlistProps> = ({
                     <div className="flex flex-col md:flex-row gap-3 md:w-3/5">
                         <div className="w-full md:w-1/3">
                             <label className="block text-sm font-medium text-gray-700 mb-1">
-                                {t('user list forms.Username')}
+                                {t('userListForms.usernameLabel')}
                             </label>
                             <div className="flex items-center border border-gray-300 rounded-lg overflow-hidden hover:border-blue-500 transition-colors focus-within:ring-2 focus-within:ring-blue-500 focus-within:border-blue-500">
                                 <div className="flex items-center justify-center bg-gray-50 p-2 border-r border-gray-300">
@@ -51,7 +51,7 @@ const UserList: React.FC<UserlistProps> = ({
 
                         <div className="w-full md:w-1/3">
                             <label className="block text-sm font-medium text-gray-700 mb-1">
-                            {t('user list forms.Full name')}
+                            {t('userListForms.fullNameLabel')}
                             </label>
                             <div className="flex items-center border border-gray-300 rounded-lg overflow-hidden hover:border-blue-500 transition-colors focus-within:ring-2 focus-within:ring-blue-500 focus-within:border-blue-500">
                                 <div className="flex items-center justify-center bg-gray-50 p-2 border-r border-gray-300">
@@ -68,20 +68,20 @@ const UserList: React.FC<UserlistProps> = ({
 
                         <div className="w-full md:w-1/3">
                             <label className="block text-sm font-medium text-gray-700 mb-1">
-                            {t('user list forms.Account role')}
+                            {t('userListForms.accountRoleLabel')}
                             </label>
                             <select
                                 {...register('role')}
                                 className="w-full border border-gray-300 rounded-lg px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 bg-white"
                             >
                                 <option value="">
-                                    {t('user list forms.Account role.All')}
+                                {t('userListForms.accountRole.all')}
                                 </option>
                                 <option value="1">
-                                {t('user list forms.Account role.Admin')}
+                                {t('userListForms.accountRole.admin')}
                                 </option>
                                 <option value="2">
-                                {t('user list forms.Account role.User')}
+                                {t('userListForms.accountRole.user')}
                                 </option>
                             </select>
                             {errors.role && <p className="text-red-600 text-xs mt-1">{errors.role.message}</p>}
@@ -94,7 +94,7 @@ const UserList: React.FC<UserlistProps> = ({
                             className="bg-blue-600 hover:bg-blue-700 text-white font-medium py-2 px-4 rounded-lg transition-colors flex items-center justify-center"
                         >
                             <SearchIcon className="mr-1" fontSize="small" />
-                            {t('user list forms.Submit')}
+                            {t('userListForms.button.search')}
                         </button>
                     </div>
                 </div>

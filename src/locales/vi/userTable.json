@@ -1,0 +1,24 @@
+{
+    "loading" : "Đang tải...",
+    "No data found": "Không tìm thấy dũ liệu",
+    "userTable": {
+        "header": {
+            "ordinal": "Stt",
+            "username": "Tên đăng nhập",
+            "fullName": "Họ và tên",
+            "dayOfBirth": "Ngày sinh",
+            "accountRole": "Loại tài khoản",
+            "actions": "Hành động"
+        },
+        "pagination": {
+            "rowsPerPage": "Số dòng",
+            "of": "Của",
+            "nextPage": "Trang tiếp theo",
+            "previosPage": "Trang trước"
+        },
+        "roles": {
+            "admin": "Quản trị viên",
+            "user": "Nhân viên"
+        }
+    }
+}

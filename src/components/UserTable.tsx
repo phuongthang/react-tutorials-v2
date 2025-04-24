@@ -80,7 +80,7 @@ const UserTable: React.FC<UserTableProps> = ({
     onDeleteUser,
     tableHeight = 'calc(100vh - 200px)',
 }) => {
-    const { t } = useTranslation('userList');
+    const { t } = useTranslation('userTable');
     const [orderBy, setOrderBy] = useState<SortableColumn>('userName');
     const [order, setOrder] = useState<Order>('asc');
     const handleRequestSort = (property: SortableColumn): void => {
@@ -92,8 +92,8 @@ const UserTable: React.FC<UserTableProps> = ({
     };
     const getRoleLabel = (roleId: number): string => {
         const roleKeys: Record<number, string> = {
-            1: 'roles.Admin',
-            2: 'roles.User',
+            1: 'userTable.roles.admin',
+            2: 'userTable.roles.user',
         };
 
         return t(roleKeys[roleId]);
@@ -122,7 +122,7 @@ const UserTable: React.FC<UserTableProps> = ({
                 <Table stickyHeader sx={{ width: '100%' }}>
                     <TableHead>
                         <TableRow sx={{ backgroundColor: '#f9f9f9' }}>
-                            <TableCell sx={{ fontWeight: 'bold', width: '5%' }}>{t('table head.Ordinal')}</TableCell>
+                            <TableCell sx={{ fontWeight: 'bold', width: '5%' }}>{t('userTable.header.ordinal')}</TableCell>
                             <TableCell
                                 sortDirection={orderBy === 'userName' ? order : false}
                                 sx={{ fontWeight: 'bold', width: '20%' }}
@@ -132,7 +132,7 @@ const UserTable: React.FC<UserTableProps> = ({
                                     direction={orderBy === 'userName' ? order : 'asc'}
                                     onClick={() => handleRequestSort('userName')}
                                 >
-                                    {t('table head.Username')}
+                                    {t('userTable.header.username')}
                                 </TableSortLabel>
                             </TableCell>
 
@@ -145,19 +145,19 @@ const UserTable: React.FC<UserTableProps> = ({
                                     direction={orderBy === 'fullName' ? order : 'asc'}
                                     onClick={() => handleRequestSort('fullName')}
                                 >
-                                    {t('table head.Full name')}
+                                    {t('userTable.header.fullName')}
                                 </TableSortLabel>
                             </TableCell>
 
                             <TableCell sx={{ fontWeight: 'bold', width: '15%' }}>
-                                {t('table head.Day of birth')}
+                            {t('userTable.header.dayOfBirth')}
                             </TableCell>
                             <TableCell sx={{ fontWeight: 'bold', width: '15%' }}>
-                                {t('table head.Account role')}
+                            {t('userTable.header.accountRole')}
                             </TableCell>
                             {isAdmin() && (
                                 <TableCell sx={{ fontWeight: 'bold', width: '15%' }}>
-                                    {t('table head.Actions')}
+                                    {t('userTable.header.actions')}
                                 </TableCell>
                             )}
                         </TableRow>
@@ -167,7 +167,7 @@ const UserTable: React.FC<UserTableProps> = ({
                             <TableRow>
                                 <TableCell colSpan={6} align="center" sx={{ py: 3 }}>
                                     <Typography variant="body1" color="text.secondary">
-                                        {t('Loading...')}
+                                        {t('loading...')}
                                     </Typography>
                                 </TableCell>
                             </TableRow>
@@ -269,7 +269,7 @@ const UserTable: React.FC<UserTableProps> = ({
                 rowsPerPage={rowsPerPage}
                 rowsPerPageOptions={[20, 50, 100]}
                 onRowsPerPageChange={onRowsPerPageChange}
-                labelRowsPerPage={t('table pagination.Rows per page')}
+                labelRowsPerPage={t('userTable.pagination.rowsPerPage')}
                 sx={{
                     borderTop: '1px solid rgba(224, 224, 224, 1)',
                     overflow: 'hidden',

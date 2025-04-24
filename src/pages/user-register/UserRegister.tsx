@@ -12,27 +12,27 @@ const UserRegister = () => {
     return (
         <div className="grid grid-cols-1 gap-y-2 sm:grid-cols-2 sm:gap-5">
             <InputField
-                label={t('register forms.Full name')}
+                label={t('registerForms.fullNameLabel')}
                 id="fname"
                 type="text"
                 name="fullName"
-                placeholder={t('register forms.Full name placeholder')}
+                placeholder={t('registerForms.fullNamePlaceholder')}
                 control={control}
                 errors={errors}
             />
             <InputField
-                label={t('register forms.Username')}
+                label={t('registerForms.usernameLabel')}
                 type="text"
                 id="uname"
                 name="userName"
-                placeholder={t('register forms.Username placeholder')}
+                placeholder={t('registerForms.usernamePlaceholder')}
                 control={control}
                 errors={errors}
             />
             <div className="flex ">
                 <div className="w-3/5 mr-2">
                     <label htmlFor="dob" className="text-gray-600 text-sm sm:mb-2 block">
-                    {t('register forms.Day of birth')}
+                    {t('registerForms.dayOfBirthLabel')}
                     </label>
                     <Controller
                         name="dob"
@@ -50,7 +50,7 @@ const UserRegister = () => {
                 </div>
                 <div className='w-1/2'>
                     <label htmlFor="gender" className="text-gray-600 text-sm sm:mb-2 block ">
-                    {t('register forms.Gender')}
+                    {t('registerForms.genderLabel')}
                     </label>
                     <select
                         {...register('gender')}
@@ -61,33 +61,33 @@ const UserRegister = () => {
                         }`}
                     >
                         
-                        <option value="1">{t('register forms.Gender.Male')}</option>
-                        <option value="2">{t('register forms.Gender.Female')}</option>
+                        <option value="1">{t('registerForms.gender.male')}</option>
+                        <option value="2">{t('registerForms.gender.female')}</option>
                     </select>
                     <p className="text-sm font-thin text-red-600">{errors.gender?.message}</p>
                 </div>
             </div>
             <InputField
-                label={t('register forms.Email')}
+                label={t('registerForms.emailLabel')}
                 type="text"
                 id="email"
                 name="email"
-                placeholder={t('register forms.Email placeholder')}
+                placeholder={t('registerForms.emailPlaceholder')}
                 control={control}
                 errors={errors}
             />
             <InputField
-                label={t('register forms.Phone number')}
+                label={t('registerForms.phoneNumberLabel')}
                 type="text"
                 id="phoneNumber"
                 name="phoneNumber"
-                placeholder={t('register forms.Phone number placeholder')}
+                placeholder={t('registerForms.phoneNumberPlaceholder')}
                 control={control}
                 errors={errors}
             />
             <div>
                 <label htmlFor="role" className="text-gray-600 text-sm sm:mb-2 block ">
-                {t('register forms.Account role')}
+               {t('registerForms.accountRoleLabel')}
                 </label>
                 <select
                     {...register('role')}
@@ -97,26 +97,26 @@ const UserRegister = () => {
                         errors.role ? 'border border-red-500' : ''
                     }`}
                 >
-                    <option value="1">{t('register forms.Account role.Admin')}</option>
-                    <option value="2">{t('register forms.Account role.User')}</option>
+                    <option value="1">{t('registerForms.accountRole.admin')}</option>
+                    <option value="2">{t('registerForms.accountRole.user')}</option>
                 </select>
                 <p className="text-sm font-thin text-red-600">{errors.role?.message}</p>
             </div>
             <InputField
-                label={t('register forms.Password')}
+                label={t('registerForms.passwordLabel')}
                 type="password"
                 id="password"
                 name="password"
-                placeholder={t('register forms.Password placeholder')}
+                placeholder={t('registerForms.passwordPlaceholder')}
                 control={control}
                 errors={errors}
             />
             <InputField
-                label={t('register forms.Confirm password')}
+                label={t('registerForms.confirmPasswordLabel')}
                 type="password"
                 id="comfirmPassword"
                 name="comfirmPassword"
-                placeholder={t('register forms.Confirm password placeholder')}
+                placeholder={t('registerForms.confirmPasswordPlaceholder')}
                 control={control}
                 errors={errors}
             />

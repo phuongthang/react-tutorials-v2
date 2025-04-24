@@ -1,20 +1,26 @@
 {   
-    "Heading": "Thông tin người dùng",
-    "user detail forms": {
-        "Full name": "Họ và tên",
-        "Username": "Tên đăng nhập",
-        "Day of birth": "Ngày sinh",
-        "Gender": "Giới tính",
-        "Gender.Male": "Nam",
-        "Gender.Female": "Nữ",
-        "Email": "Email",
-        "Phone number": "Số điện thoại",
-        "Account role": "Loại tài khoản",
-        "Account role.User": "Nhân viên",
-        "Account role.Admin": "Quản trị viên",
-        "Avatar": "Ảnh đại diện"
+    "heading": "Thông tin người dùng",
+    "detailForms": {
+        "fullNameLabel": "Họ và tên",
+        "usernameLabel": "Tên đăng nhập",
+        "dayOfBirthLabel": "Ngày sinh",
+        "genderLabel": "Giới tính",
+        "gender":{
+            "male": "Nam",
+            "female": "Nữ"
+        },
+        "emailLabel": "Email",
+        "phoneNumberLabel": "Số điện thoại",
+        "accountRoleLabel": "Loại tài khoản",
+        "accountRole":{
+            "admin":"Quản trị viên",
+            "user":"Nhân viên"
+        },
+        "avatarLabel": "Ảnh đại diện"
     },
-    "Save info": "Lưu thông tin",
-    "Back": "Trở về",
-    "Select file": "Chọn tệp"
+    "button":{
+    "saveInfo": "Lưu thông tin",
+    "back": "Trở về"
+    },
+    "selectFile": "Chọn tệp"
 }

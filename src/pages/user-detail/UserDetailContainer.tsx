@@ -25,10 +25,9 @@ export interface userDetailFormData {
 }
 const UserDetailContainer = () => {
     const navigate = useNavigate();
-    const {t} = useTranslation('userDetail')
-    
+    const { t } = useTranslation('toastMessage');
+
     const { id } = useParams<{ id: string }>();
-    const [loading, setLoading] = useState(false);
 
     const {
         register,
@@ -37,18 +36,16 @@ const UserDetailContainer = () => {
         control,
         setError,
         formState: { isDirty, errors },
-    } = useForm<userDetailFormData>
-        ({
+    } = useForm<userDetailFormData>({
         resolver: yupResolver(userDetailSchema) as Resolver<userDetailFormData>,
         mode: 'all',
     });
 
-
-    const handleEditUser = async (data: userDetailFormData) => {   
+    const handleEditUser = async (data: userDetailFormData) => {
         data.id = id;
-        try{        
+        try {
             const response = await request.updateUser(data);
-            if (response.statusCode===200){
+            if (response.statusCode === 200) {
                 toast.dismiss();
                 toast.success(response.message);
                 navigate(PATH_URL.USER_LIST_URL);
@@ -63,42 +60,36 @@ const UserDetailContainer = () => {
                     toast.error(error.response.data.message);
                 }
             } else {
-                toast.error('Lỗi không xác định. thử lại sau!');
+                toast.error(t('errorsUnknown'));
             }
         }
-        
     };
 
     const onCancel = () => {
         navigate(PATH_URL.USER_LIST_URL);
-    }
+    };
 
     useEffect(() => {
         const fetchUser = async (data: { id: string }) => {
-            setLoading(true);
             try {
                 const response = await request.detailUser(data);
                 if (response.data.code === 200) {
                     const user = response.data.data;
                     reset({
-                        fullName: loading ? "loading..." : user.fullName,
-                        userName: loading ? "loading..." : user.userName,
-                        email: loading ? "loading..." : user.email,
-                        dob: loading ? "loading..." : user.dob ? user.dob.split('T')[0] : '',
-                        gender: loading ? "loading..." : user.gender,
-                        phoneNumber: loading ? "loading..." : user.phoneNumber,
-                        role: loading ? "loading..." : user.role,
+                        fullName: user.fullName,
+                        userName: user.userName,
+                        email: user.email,
+                        dob: user.dob.split('T')[0],
+                        gender: user.gender,
+                        phoneNumber: user.phoneNumber,
+                        role: user.role,
                         file: undefined,
                     });
-                } 
+                }
             } catch (error: any) {
                 toast.dismiss();
                 toast.error(error.response.data.message);
             }
-            finally{
-                setLoading(false);
-            }
-    
         };
 
         if (id) {
@@ -106,10 +97,16 @@ const UserDetailContainer = () => {
         }
     }, [id, reset]);
 
-
     return (
         <div className="p-4">
-            <UserDetail register={register} isDirty={isDirty} errors={errors} onSubmit={handleSubmit(handleEditUser)} control={control} onCancel={onCancel}/>
+            <UserDetail
+                register={register}
+                isDirty={isDirty}
+                errors={errors}
+                onSubmit={handleSubmit(handleEditUser)}
+                control={control}
+                onCancel={onCancel}
+            />
         </div>
     );
 };

@@ -44,6 +44,10 @@ const UserRegisterContainer = () => {
         setError,
     } = useForm<registerFormInputs>({
         resolver: yupResolver(registerSchema),
+        defaultValues: {
+            gender:"",
+            role:""
+        },
         mode: 'all',
     });
 
@@ -65,7 +69,7 @@ const UserRegisterContainer = () => {
                     toast.error(error.response.data.message);
                 }
             } else {
-                toast.error('Đã có lỗi sảy ra vui lòng thử lại !');
+                toast.error(t('errorsUnknowm',{ns: 'toastMessage'}));
             }
         } finally {
             setLoading(false);
@@ -78,7 +82,7 @@ const UserRegisterContainer = () => {
                 <div className="bg-white dark:bg-gray-300 shadow-md rounded-lg py-6 px-8 ">
                     <div className="text-center mb-8 ">
                         <img src="./src/img/logo.png" alt="logo" className="w-48 inline-block" />
-                        <h4 className="text-black mt-5 text-[22px]">{t('Heading')}</h4>
+                        <h4 className="text-black mt-5 text-[22px]">{t('heading')}</h4>
                     </div>
                     <form onSubmit={handleSubmit(onSubmit)}>
                         <UserRegister />
@@ -88,18 +92,18 @@ const UserRegisterContainer = () => {
                                 type="submit"
                                 className="py-3 px-10 text-sm tracking-wider rounded text-white bg-blue-600 hover:bg-blue-700 focus:outline-none"
                             >
-                                {t('register forms.Submit')}
+                                {t('registerForms.submit')}
                             </button>
                         </div>
                     </form>
                     <div className="text-center mt-5">
                     <p className=" mt-2 text-center text-gray-500 text-sm mb-2 block">
-                                {t('swith prompt.Already have account')}
+                                {t('swithPrompt.Already have account')}
                                 <button
                                     className="ml-2 text-blue-600 hover:underline "
                                     onClick={() => navigate(PATH_URL.LOGIN_URL)}
                                 >
-                                    {t('swith prompt.Sign in')}
+                                    {t('swithPrompt.Sign in')}
                                 </button>
                             </p>
                     </div>

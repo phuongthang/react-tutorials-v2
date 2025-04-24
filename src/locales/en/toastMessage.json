@@ -1,0 +1,6 @@
+{
+
+    "errorsUnknown":"Unknown error. Please try again later!",
+    "passwordResetSent": "A new password has been sent to your email address.",
+    "codeSent":"The code has been sent to your email"
+}

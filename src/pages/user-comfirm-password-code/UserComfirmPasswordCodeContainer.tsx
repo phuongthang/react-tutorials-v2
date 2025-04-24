@@ -9,12 +9,14 @@ import { yupResolver } from '@hookform/resolvers/yup';
 import * as request from '../../api/axiosClient';
 import { toast } from 'react-toastify';
 import handleApiErrors from '../../utils/handleApiErrors';
+import { useTranslation } from 'react-i18next';
 
 export interface passwordCodeFormInputs {
     email?: string;
     passwordCode: string;
 }
 const UserComFirmPasswordCodeContainer = () => {
+    const {t} = useTranslation('toastMessage')
     const navigate = useNavigate();
     const [loading, setLoading] = useState(false);
 
@@ -42,7 +44,7 @@ const UserComFirmPasswordCodeContainer = () => {
             const response = await request.comfirmPasswordCode(data);
             if (response.statusCode === 200) {
                 toast.dismiss();
-                toast.success('Mật khẩu mới đã được gửi về địa chỉ email của bạn');
+                toast.success(t('passwordResetSent'));
                 localStorage.removeItem('emailForgotPassword');
                 navigate(PATH_URL.LOGIN_URL);
             }
@@ -55,7 +57,7 @@ const UserComFirmPasswordCodeContainer = () => {
                     toast.error(error.response.data.message);
                 }
             } else {
-                toast.error('Lỗi không xác định. thử lại sau!');
+                toast.error(t('errorsUnknown'));
             }
         } finally {
             setLoading(false);

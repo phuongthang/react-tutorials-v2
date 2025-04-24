@@ -16,13 +16,13 @@ const UserForgotPassword: React.FC<UserDetailProps> = ({ errors, onSubmit, loadi
     return (
         <div className="min-h-screen flex items-center justify-center bg-gradient-to-r from-blue-50 to-indigo-100 px-4">
             <div className="bg-white shadow-xl rounded-3xl p-8 w-full max-w-md">
-                <h2 className="text-2xl font-bold text-gray-800 mb-6 text-center">{t('Heading')}</h2>
-                <p className="text-sm  text-gray-600 mb-6 text-center">{t('Description')}</p>
+                <h2 className="text-2xl font-bold text-gray-800 mb-6 text-center">{t('heading')}</h2>
+                <p className="text-sm  text-gray-600 mb-6 text-center">{t('description')}</p>
 
                 <form onSubmit={onSubmit} className="space-y-6">
                     <div className="space-y-2">
                         <label htmlFor="email" className="block text-sm font-medium text-gray-700">
-                            {t('Email label')}
+                            {t('emailLabel')}
                         </label>
                         <InputField
                             label=""
@@ -40,7 +40,7 @@ const UserForgotPassword: React.FC<UserDetailProps> = ({ errors, onSubmit, loadi
                         type="submit"
                         className="w-full py-3 px-4 bg-gradient-to-r from-blue-600 to-indigo-600 text-white rounded-xl hover:from-blue-700 hover:to-indigo-700 transition-all duration-200 font-semibold"
                     >
-                        {t('Submit')}
+                        {t('submit')}
                     </button>
                 </form>
             </div>

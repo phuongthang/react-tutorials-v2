@@ -1,16 +1,16 @@
 {
-    "Heading": "Đăng nhập tài khoản",
-    "Subheading": "Hãy bắt đầu với ứng dụng của chúng tôi, chỉ cần đăng nhập và tận hưởng.",
+    "heading": "Đăng nhập tài khoản",
+    "subHeading": "Hãy bắt đầu với ứng dụng của chúng tôi, chỉ cần đăng nhập và tận hưởng.",
 
-    "login forms":{
-        "Email label": "Email",
-        "Password label": "Mật khẩu",
-        "Submit": "Đăng nhập"
+    "loginForms":{
+        "emailLabel": "Email",
+        "passwordLabel": "Mật khẩu",
+        "submit": "Đăng nhập"
     },
-    "Forgot password": "Quên mật khẩu?",
+    "forgotPassword": "Quên mật khẩu?",
 
-    "swith prompt":{
-        "No account" : "Chưa có tài khoản?",
-        "Sign up": "Đăng ký"
+    "swithPrompt":{
+        "noAccount" : "Chưa có tài khoản?",
+        "signUp": "Đăng ký"
     }
 }

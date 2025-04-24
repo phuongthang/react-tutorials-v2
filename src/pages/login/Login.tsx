@@ -13,7 +13,7 @@ const Login = () => {
     return (
         <div className="grid sm:grid-cols-1 gap-6">
             <InputField
-                label={t('login forms.Email label')}
+                label={t('loginForms.emailLabel')}
                 type="text"
                 id="email"
                 name="email"
@@ -22,7 +22,7 @@ const Login = () => {
                 errors={errors}
             />
             <InputField
-                label={t('login forms.Password label')}
+                label={t('loginForms.passwordLabel')}
                 type="password"
                 id="password"
                 name="password"

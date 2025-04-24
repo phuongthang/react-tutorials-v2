@@ -1,39 +1,25 @@
 {
-    "Heading": "Tìm kiếm người dùng",
-    "No data found": "Không tìm thấy dũ liệu",
-    "Loading...":  "Đang tải...",
-    "user list forms": {
-        "Full name": "Họ và tên",
-        "Username": "Tên đăng nhập",
-        "Account role": "Loại tài khoản",
-        "Account role.All": "Tất cả",
-        "Account role.User": "Nhân viên",
-        "Account role.Admin": "Quản trị viên",
-        "Submit": "Tìm kiếm"
+    "heading": "Tìm kiếm người dùng",
+    "loading...": "Đang tải...",
+    "userListForms": {
+        "fullNameLabel": "Họ và tên",
+        "usernameLabel": "Tên đăng nhập",
+        "accountRoleLabel": "Loại tài khoản",
+        "accountRole": {
+            "all": "Tất cả",
+            "user": "Nhân viên",
+            "admin": "Quản trị viên"
+        },
+        "button": {
+            "search": "Tìm kiếm"
+        }
     },
-    "table head": {
-        "Ordinal": "Stt",
-        "Username": "Tên đăng nhập",
-        "Full name": "Họ và tên",
-        "Day of birth": "Ngày sinh",
-        "Account role": "Loại tài khoản",
-        "Actions": "Hành động"
-    },
-
-    "table pagination": {
-        "Rows per page": "Số dòng",
-        "Of": "Của",
-        "Next page": "Trang tiếp theo",
-        "Previos page": "Trang trước"
-    },
-    "roles": {
-        "Admin": "Quản trị viên",
-        "User": "Nhân viên"
-    },
-    "Alert":{
-        "Title": "Xác nhận xóa",
-        "Delete message": "Bạn có chắc chắn muốn xóa người dùng này?",
-        "Comfirm": "Xác nhận",
-        "Cancel": "Hủy"
+    "alert": {
+        "title": "Xác nhận xóa",
+        "deleteMessage": "Bạn có chắc chắn muốn xóa người dùng này?",
+        "button": {
+            "comfirm": "Xác nhận",
+            "cancel": "Hủy"
+        }
     }
 }

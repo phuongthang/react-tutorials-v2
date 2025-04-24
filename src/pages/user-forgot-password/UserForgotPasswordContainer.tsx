@@ -9,6 +9,7 @@ import { forgotPasswordSchema } from "./forgotPasswordSchema";
 import * as request from '../../api/axiosClient';
 import { toast } from "react-toastify";
 import handleApiErrors from "../../utils/handleApiErrors";
+import { useTranslation } from "react-i18next";
 
 
 export interface forgotPasswordFormInputs {
@@ -17,6 +18,7 @@ export interface forgotPasswordFormInputs {
 
 const UserForgotPasswordContainer = () =>
     {
+        const {t} = useTranslation('toastMessage')
         const navigate = useNavigate();
 
         const [loading, setLoading] = useState(false);
@@ -47,7 +49,7 @@ const UserForgotPasswordContainer = () =>
                 const response = await request.forgotPassword(data);
                 if (response.statusCode===200){
                     toast.dismiss();
-                    toast.success("Đã gửi mã về email");
+                    toast.success(t('codeSent'));
                     localStorage.setItem("emailForgotPassword",data.email);
                     navigate(PATH_URL.USER_COMFIRM_PASSWORD_CODE_URL);
                 }
@@ -60,7 +62,7 @@ const UserForgotPasswordContainer = () =>
                         toast.error(error.response.data.message);
                     }
                 } else {
-                    toast.error('Lỗi không xác định. thử lại sau!');
+                    toast.error(t('errorsUnknowm'));
                 }
             }
             finally{

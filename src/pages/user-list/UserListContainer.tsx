@@ -24,11 +24,11 @@ export interface userListFormInputs {
 }
 
 interface params {
-    page: number;
-    limit: number;
-    sortName: string;
-    direction: string;
+    [key: string]: string;
 }
+interface headers {
+    Authorization: string;
+  }
 
 const UserListContainer = () => {
     const navigate = useNavigate();
@@ -77,16 +77,25 @@ const UserListContainer = () => {
         return saved
             ? JSON.parse(saved)
             : {
-                  page: 1,
-                  limit: 20,
+                  page: "1",
+                  limit: "20",
                   sortName: 'userName',
                   direction: 'ASC',
               };
     });
-    const callApiUserList = async (data: userListFormInputs, params: params) => {
+    const getHeaders = (): Record<string, string> => {
+        const token = localStorage.getItem('accessToken')
+        return token
+          ? { Authorization: `Bearer ${token}` }
+          : {}
+      }
+    const headers = getHeaders();
+    
+
+    const callApiUserList = async (data: userListFormInputs, params: params,) => {
         setLoading(true);
         try {
-            const response: any = await request.userList(data, params);
+            const response: any = await request.userList(data, params, headers);
             if (response.statusCode === 200 && response.data.data) {
                 setListUsers(response.data.data.docs);
                 setRowsPerPage(response.data.data.limit);
@@ -101,7 +110,7 @@ const UserListContainer = () => {
                     toast.error(error.response.data.message);
                 }
             } else {
-                toast.error('Lỗi không xác định. thử lại sau!');
+                toast.error(t('errorsUnknowm',{ns: 'toastMessage'}));
             }
         } finally {
             setLoading(false);
@@ -140,7 +149,7 @@ const UserListContainer = () => {
             setLoading(true);
             try {
                 toast.dismiss();
-                const response: any = await request.deleteUser(data);
+                const response: any = await request.deleteUser(data, headers);
                 if (response.statusCode === 200) {
                     const newListUser = listUsers.filter((_, index) => index !== indexRemove);
                     setListUsers(newListUser);
@@ -162,17 +171,17 @@ const UserListContainer = () => {
         };
 
         confirmAlert({
-            title: t('Alert.Title'),
-            message: t('Alert.Delete message'),
+            title: t('alert.title'),
+            message: t('alert.deleteMessage'),
             buttons: [
                 {
-                    label: t('Alert.Comfirm'),
+                    label: t('alert.button.comfirm'),
                     onClick: () => {
                         deleteUser();
                     },
                 },
                 {
-                    label: t('Alert.Cancel'),
+                    label: t('alert.button.cancel'),
                     onClick: () => {},
                 },
             ],
